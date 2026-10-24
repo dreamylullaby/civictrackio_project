@@ -45,7 +45,7 @@ code { font-family: 'Courier New', monospace; font-size: 0.85em; background: rgb
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 24px; height: 60px;
 }
-.nav-brand { display: flex; align-items: center; gap: 10px; }
+.nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
 .nav-logo-circle {
   width: 36px; height: 36px; border-radius: 9px;
   background: var(--gradient);

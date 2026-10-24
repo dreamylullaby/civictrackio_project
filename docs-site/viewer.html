@@ -14,18 +14,21 @@
 
   <nav class="nav">
     <div class="nav-inner">
-      <div class="nav-brand">
+      <a href="index.html" class="nav-brand">
         <div class="nav-logo-circle">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           </svg>
         </div>
         <span class="nav-name">Civic<span class="nav-name-accent">Track</span><span class="nav-name-io">IO</span></span>
-      </div>
-      <div class="nav-links">
-        <a href="index.html#manuales">← Volver a manuales</a>
+      </a>
+      <div class="nav-links" id="viewer-nav-links">
+        <a href="index.html#manuales">← Manuales</a>
         <a href="https://civictrackio.com" target="_blank" class="nav-btn">Dashboard →</a>
       </div>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
@@ -40,10 +43,21 @@
     <main class="viewer-main">
       <div class="viewer-toolbar">
         <span id="manual-title-label" class="viewer-label"></span>
-        <a id="download-btn" href="#" download class="manual-btn-dl" style="width:fit-content;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Descargar .md
-        </a>
+        <div class="viewer-toolbar-actions">
+          <button class="toc-toggle-btn" id="toc-toggle" aria-label="Tabla de contenidos">☰ Contenido</button>
+          <a id="download-btn" href="#" download class="manual-btn-dl" style="width:fit-content;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            .md
+          </a>
+          <a id="download-pdf-btn" href="#" class="manual-btn-dl" style="width:fit-content;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            PDF
+          </a>
+          <a id="download-docx-btn" href="#" class="manual-btn-dl" style="width:fit-content;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Word
+          </a>
+        </div>
       </div>
       <div id="manual-content" class="markdown-body">
         <div class="viewer-loading">Cargando manual…</div>
@@ -53,6 +67,10 @@
 
   <!-- marked.js para renderizar Markdown -->
   <script src="https://cdn.jsdelivr.net/npm/marked@9/marked.min.js"></script>
+  <!-- jsPDF para exportar PDF -->
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <!-- html2canvas para capturar contenido en PDF -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <script src="viewer.js"></script>
 </body>
 </html>
