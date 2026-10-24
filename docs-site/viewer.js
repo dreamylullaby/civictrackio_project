@@ -1,22 +1,22 @@
 const MANUALS = {
   usuario: {
     label: 'Manual de usuario final · App móvil',
-    file: 'manuales/CivicTrackIO - Manual de usuario final (App móvil).md',
+    file: 'manuales/manual-usuario.md',
     filename: 'CivicTrackIO-Manual-Usuario',
   },
   admin: {
     label: 'Manual de administrador · Dashboard web',
-    file: 'manuales/CivicTrackIO - Manual de administrador (Dashboard web).md',
+    file: 'manuales/manual-admin.md',
     filename: 'CivicTrackIO-Manual-Admin',
   },
   tecnico: {
     label: 'Manual técnico · Instalación y configuración',
-    file: 'manuales/CivicTrackIO - Manual técnico de instalación y configuración (Developer).md',
+    file: 'manuales/manual-tecnico.md',
     filename: 'CivicTrackIO-Manual-Tecnico',
   },
   despliegue: {
     label: 'Manual de despliegue · Render · Netlify · Supabase',
-    file: 'manuales/CivicTrackIO - Manual de despliegue.md',
+    file: 'manuales/manual-despliegue.md',
     filename: 'CivicTrackIO-Manual-Despliegue',
   },
 };
