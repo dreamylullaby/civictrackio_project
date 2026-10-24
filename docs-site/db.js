@@ -86,87 +86,170 @@ function edge(from, to) {
   return { fx, fy, tx: tx2, ty: ty2 };
 }
 
+// SVG namespace helper
+const SVG_NS = 'http://www.w3.org/2000/svg';
+function svgEl(tag, attrs) {
+  const el = document.createElementNS(SVG_NS, tag);
+  Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
+  return el;
+}
+
+/**
+ * drawLines — relation format:
+ * [fromId, toId, color, label?, cardFrom?, cardTo?]
+ *
+ * cardFrom/cardTo: '1', '*', '0..1', '0..*', '1..*'
+ * label: relationship name shown mid-line
+ */
 function drawLines(svgId, relations) {
   const svg = document.getElementById(svgId);
   if (!svg) return;
   svg.innerHTML = '';
-  const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+  const defs = svgEl('defs', {});
 
-  relations.forEach(([fromId, toId, color], i) => {
+  relations.forEach(([fromId, toId, color, label, cardFrom, cardTo], i) => {
     const fromEl = document.getElementById(fromId);
     const toEl   = document.getElementById(toId);
     if (!fromEl || !toEl) return;
 
+    // ── Arrow marker (filled triangle) ──
     const mid = `arrow-${svgId}-${i}`;
-    const marker = document.createElementNS('http://www.w3.org/2000/svg', 'marker');
-    marker.setAttribute('id', mid);
-    marker.setAttribute('markerWidth', '6'); marker.setAttribute('markerHeight', '6');
-    marker.setAttribute('refX', '5'); marker.setAttribute('refY', '3');
-    marker.setAttribute('orient', 'auto');
-    const poly = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-    poly.setAttribute('points', '0 0, 6 3, 0 6'); poly.setAttribute('fill', color);
-    marker.appendChild(poly); defs.appendChild(marker);
+    const marker = svgEl('marker', {
+      id: mid, markerWidth: '8', markerHeight: '8',
+      refX: '7', refY: '4', orient: 'auto',
+    });
+    marker.appendChild(svgEl('polygon', {
+      points: '0 0, 8 4, 0 8', fill: color,
+    }));
+    defs.appendChild(marker);
 
     const from = getBox(fromEl), to = getBox(toEl);
     if (!from || !to) return;
     const { fx, fy, tx: tx2, ty: ty2 } = edge(from, to);
+
+    // Cubic bezier control points
     const cp1x = fx + (tx2 - fx) * 0.5, cp1y = fy;
     const cp2x = cp1x, cp2y = ty2;
 
-    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    path.setAttribute('d', `M ${fx} ${fy} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${tx2} ${ty2}`);
-    path.setAttribute('fill', 'none'); path.setAttribute('stroke', color);
-    path.setAttribute('stroke-width', '1.5'); path.setAttribute('stroke-opacity', '0.6');
-    path.setAttribute('marker-end', `url(#${mid})`);
-    svg.appendChild(path);
+    // ── Main path ──
+    svg.appendChild(svgEl('path', {
+      d: `M ${fx} ${fy} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${tx2} ${ty2}`,
+      fill: 'none', stroke: color,
+      'stroke-width': '1.8', 'stroke-opacity': '0.75',
+      'marker-end': `url(#${mid})`,
+    }));
+
+    // Midpoint along the bezier (t=0.5)
+    const mx = 0.125*fx + 0.375*cp1x + 0.375*cp2x + 0.125*tx2;
+    const my = 0.125*fy + 0.375*cp1y + 0.375*cp2y + 0.125*ty2;
+
+    // ── Relationship label (mid) ──
+    if (label) {
+      // pill background
+      const rect = svgEl('rect', {
+        x: mx - 34, y: my - 9,
+        width: '68', height: '16',
+        rx: '5', ry: '5',
+        fill: '#0f172a', stroke: color,
+        'stroke-width': '1', opacity: '0.92',
+      });
+      const txt = svgEl('text', {
+        x: mx, y: my + 3,
+        'text-anchor': 'middle',
+        fill: color,
+        'font-size': '9',
+        'font-family': 'Inter, sans-serif',
+        'font-weight': '600',
+        'letter-spacing': '0.03em',
+      });
+      txt.textContent = label;
+      svg.appendChild(rect);
+      svg.appendChild(txt);
+    }
+
+    // ── Cardinality labels ──
+    // cardFrom near source (offset along the line start)
+    const OFFSET = 22;
+    function cardLabel(x, y, text, anchor) {
+      if (!text) return;
+      const bg = svgEl('rect', {
+        x: anchor === 'start' ? x - 2 : x - 18,
+        y: y - 9, width: '20', height: '13',
+        rx: '3', fill: '#0f172a', opacity: '0.85',
+      });
+      const t = svgEl('text', {
+        x, y: y + 2,
+        'text-anchor': 'middle',
+        fill: '#e2e8f0',
+        'font-size': '9.5',
+        'font-family': 'Inter, sans-serif',
+        'font-weight': '700',
+      });
+      t.textContent = text;
+      svg.appendChild(bg);
+      svg.appendChild(t);
+    }
+
+    if (cardFrom) {
+      const dx = tx2 - fx, dy2 = ty2 - fy;
+      const len = Math.sqrt(dx*dx + dy2*dy2) || 1;
+      cardLabel(fx + (dx/len)*OFFSET, fy + (dy2/len)*OFFSET, cardFrom, 'start');
+    }
+    if (cardTo) {
+      const dx = fx - tx2, dy2 = fy - ty2;
+      const len = Math.sqrt(dx*dx + dy2*dy2) || 1;
+      cardLabel(tx2 + (dx/len)*OFFSET, ty2 + (dy2/len)*OFFSET, cardTo, 'end');
+    }
   });
+
   svg.insertBefore(defs, svg.firstChild);
 }
 
 // Relations per sprint
+// Format: [fromId, toId, color, label, cardFrom, cardTo]
 const SPRINT_RELATIONS = {
   1: [
-    ['s1-reportes', 's1-usuarios', '#60A5FA'],
-    ['s1-reportes', 's1-zonas',    '#34D399'],
+    ['s1-reportes', 's1-usuarios', '#60A5FA', 'registra',  '*', '1'],
+    ['s1-reportes', 's1-zonas',    '#34D399', 'ubicado en','*', '1'],
   ],
   2: [
-    ['s2-reportes',  's2-usuarios',       '#60A5FA'],
-    ['s2-reportes',  's2-zonas',          '#34D399'],
-    ['s2-reportes',  's2-corregimientos', '#34D399'],
-    ['s2-reportes',  's2-veredas',        '#34D399'],
-    ['s2-veredas',   's2-corregimientos', '#34D399'],
-    ['s2-alertas',   's2-usuarios',       '#FBBF24'],
-    ['s2-alertas',   's2-reportes',       '#FBBF24'],
-    ['s2-config',    's2-usuarios',       '#FBBF24'],
-    ['s2-pwreset',   's2-usuarios',       '#F87171'],
+    ['s2-reportes',  's2-usuarios',       '#60A5FA', 'registra',    '*',    '1'],
+    ['s2-reportes',  's2-zonas',          '#34D399', 'ubicado en',  '*',    '1'],
+    ['s2-reportes',  's2-corregimientos', '#34D399', 'rural en',    '*',    '0..1'],
+    ['s2-reportes',  's2-veredas',        '#34D399', 'vereda',      '*',    '0..1'],
+    ['s2-veredas',   's2-corregimientos', '#34D399', 'pertenece a', '*',    '1'],
+    ['s2-alertas',   's2-usuarios',       '#FBBF24', 'notifica',    '*',    '1'],
+    ['s2-alertas',   's2-reportes',       '#FBBF24', 'sobre',       '*',    '1'],
+    ['s2-config',    's2-usuarios',       '#FBBF24', 'configura',   '1',    '1'],
+    ['s2-pwreset',   's2-usuarios',       '#F87171', 'solicita',    '*',    '1'],
   ],
   3: [
-    ['s3-reportes',   's3-usuarios',       '#60A5FA'],
-    ['s3-reportes',   's3-zonas',          '#34D399'],
-    ['s3-reportes',   's3-corregimientos', '#34D399'],
-    ['s3-reportes',   's3-veredas',        '#34D399'],
-    ['s3-reportes',   's3-incidentes',     '#FB923C'],
-    ['s3-incidentes', 's3-reportes',       '#FB923C'],
-    ['s3-incidentes', 's3-zonas',          '#34D399'],
-    ['s3-incidentes', 's3-corregimientos', '#34D399'],
-    ['s3-incidentes', 's3-veredas',        '#34D399'],
-    ['s3-veredas',    's3-corregimientos', '#34D399'],
-    ['s3-alertas',    's3-usuarios',       '#FBBF24'],
-    ['s3-alertas',    's3-reportes',       '#FBBF24'],
-    ['s3-config',     's3-usuarios',       '#FBBF24'],
-    ['s3-pwreset',    's3-usuarios',       '#F87171'],
+    ['s3-reportes',   's3-usuarios',       '#60A5FA', 'registra',    '*',    '1'],
+    ['s3-reportes',   's3-zonas',          '#34D399', 'ubicado en',  '*',    '1'],
+    ['s3-reportes',   's3-corregimientos', '#34D399', 'rural en',    '*',    '0..1'],
+    ['s3-reportes',   's3-veredas',        '#34D399', 'vereda',      '*',    '0..1'],
+    ['s3-reportes',   's3-incidentes',     '#FB923C', 'agrupa en',   '*',    '0..1'],
+    ['s3-incidentes', 's3-reportes',       '#FB923C', 'principal',   '1',    '1'],
+    ['s3-incidentes', 's3-zonas',          '#34D399', 'ubicado en',  '*',    '1'],
+    ['s3-incidentes', 's3-corregimientos', '#34D399', 'rural en',    '*',    '0..1'],
+    ['s3-incidentes', 's3-veredas',        '#34D399', 'vereda',      '*',    '0..1'],
+    ['s3-veredas',    's3-corregimientos', '#34D399', 'pertenece a', '*',    '1'],
+    ['s3-alertas',    's3-usuarios',       '#FBBF24', 'notifica',    '*',    '1'],
+    ['s3-alertas',    's3-reportes',       '#FBBF24', 'sobre',       '*',    '1'],
+    ['s3-config',     's3-usuarios',       '#FBBF24', 'configura',   '1',    '1'],
+    ['s3-pwreset',    's3-usuarios',       '#F87171', 'solicita',    '*',    '1'],
   ],
   4: [
-    ['s4-reportes',    's4-usuarios',      '#60A5FA'],
-    ['s4-incidentes',  's4-reportes',      '#FB923C'],
-    ['s4-audit-rep',   's4-usuarios',      '#94A3B8'],
-    ['s4-audit-rep',   's4-reportes',      '#94A3B8'],
-    ['s4-audit-edit',  's4-usuarios',      '#94A3B8'],
-    ['s4-audit-edit',  's4-reportes',      '#94A3B8'],
-    ['s4-audit-usr',   's4-usuarios',      '#94A3B8'],
-    ['s4-solicitudes', 's4-reportes',      '#FB923C'],
-    ['s4-solicitudes', 's4-usuarios',      '#60A5FA'],
-    ['s4-terminos',    's4-usuarios',      '#2DD4BF'],
+    ['s4-reportes',    's4-usuarios',   '#60A5FA', 'registra',      '*',    '1'],
+    ['s4-incidentes',  's4-reportes',   '#FB923C', 'principal',     '1',    '1'],
+    ['s4-audit-rep',   's4-usuarios',   '#94A3B8', 'admin',         '*',    '1'],
+    ['s4-audit-rep',   's4-reportes',   '#94A3B8', 'audita',        '*',    '1'],
+    ['s4-audit-edit',  's4-usuarios',   '#94A3B8', 'editor',        '*',    '1'],
+    ['s4-audit-edit',  's4-reportes',   '#94A3B8', 'edición',       '*',    '1'],
+    ['s4-audit-usr',   's4-usuarios',   '#94A3B8', 'audita',        '*',    '1'],
+    ['s4-solicitudes', 's4-reportes',   '#FB923C', 'sobre',         '*',    '1'],
+    ['s4-solicitudes', 's4-usuarios',   '#60A5FA', 'solicitante',   '*',    '1'],
+    ['s4-terminos',    's4-usuarios',   '#2DD4BF', 'acepta',        '*',    '1'],
   ],
 };
 
@@ -181,29 +264,30 @@ window.addEventListener('load', () => {
 });
 
 // ── Full diagram ──
+// Format: [fromId, toId, color, label, cardFrom, cardTo]
 const FULL_RELATIONS = [
-  ['t-reportes',      't-usuarios',        '#60A5FA'],
-  ['t-reportes',      't-zonas',           '#34D399'],
-  ['t-reportes',      't-corregimientos',  '#34D399'],
-  ['t-reportes',      't-veredas',         '#34D399'],
-  ['t-reportes',      't-incidentes',      '#FB923C'],
-  ['t-incidentes',    't-reportes',        '#FB923C'],
-  ['t-incidentes',    't-zonas',           '#34D399'],
-  ['t-incidentes',    't-corregimientos',  '#34D399'],
-  ['t-incidentes',    't-veredas',         '#34D399'],
-  ['t-veredas',       't-corregimientos',  '#34D399'],
-  ['t-alertas',       't-usuarios',        '#FBBF24'],
-  ['t-alertas',       't-reportes',        '#FBBF24'],
-  ['t-config-alertas','t-usuarios',        '#FBBF24'],
-  ['t-pw-resets',     't-usuarios',        '#F87171'],
-  ['t-audit-rep',     't-usuarios',        '#94A3B8'],
-  ['t-audit-rep',     't-reportes',        '#94A3B8'],
-  ['t-audit-edit',    't-usuarios',        '#94A3B8'],
-  ['t-audit-edit',    't-reportes',        '#94A3B8'],
-  ['t-audit-usr',     't-usuarios',        '#94A3B8'],
-  ['t-solicitudes',   't-reportes',        '#FB923C'],
-  ['t-solicitudes',   't-usuarios',        '#60A5FA'],
-  ['t-terminos',      't-usuarios',        '#2DD4BF'],
+  ['t-reportes',       't-usuarios',        '#60A5FA', 'registra',    '*',    '1'],
+  ['t-reportes',       't-zonas',           '#34D399', 'ubicado en',  '*',    '1'],
+  ['t-reportes',       't-corregimientos',  '#34D399', 'rural en',    '*',    '0..1'],
+  ['t-reportes',       't-veredas',         '#34D399', 'vereda',      '*',    '0..1'],
+  ['t-reportes',       't-incidentes',      '#FB923C', 'agrupa en',   '*',    '0..1'],
+  ['t-incidentes',     't-reportes',        '#FB923C', 'principal',   '1',    '1'],
+  ['t-incidentes',     't-zonas',           '#34D399', 'ubicado en',  '*',    '1'],
+  ['t-incidentes',     't-corregimientos',  '#34D399', 'rural en',    '*',    '0..1'],
+  ['t-incidentes',     't-veredas',         '#34D399', 'vereda',      '*',    '0..1'],
+  ['t-veredas',        't-corregimientos',  '#34D399', 'pertenece a', '*',    '1'],
+  ['t-alertas',        't-usuarios',        '#FBBF24', 'notifica',    '*',    '1'],
+  ['t-alertas',        't-reportes',        '#FBBF24', 'sobre',       '*',    '1'],
+  ['t-config-alertas', 't-usuarios',        '#FBBF24', 'configura',   '1',    '1'],
+  ['t-pw-resets',      't-usuarios',        '#F87171', 'solicita',    '*',    '1'],
+  ['t-audit-rep',      't-usuarios',        '#94A3B8', 'admin',       '*',    '1'],
+  ['t-audit-rep',      't-reportes',        '#94A3B8', 'audita',      '*',    '1'],
+  ['t-audit-edit',     't-usuarios',        '#94A3B8', 'editor',      '*',    '1'],
+  ['t-audit-edit',     't-reportes',        '#94A3B8', 'edición',     '*',    '1'],
+  ['t-audit-usr',      't-usuarios',        '#94A3B8', 'audita usr',  '*',    '1'],
+  ['t-solicitudes',    't-reportes',        '#FB923C', 'sobre',       '*',    '1'],
+  ['t-solicitudes',    't-usuarios',        '#60A5FA', 'solicitante', '*',    '1'],
+  ['t-terminos',       't-usuarios',        '#2DD4BF', 'acepta',      '*',    '1'],
 ];
 
 function drawFullDiagram() {
