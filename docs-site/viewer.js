@@ -128,21 +128,30 @@ function initHamburger() {
   btn.addEventListener('click', () => links.classList.toggle('nav-open'));
 }
 
-// ── TOC toggle (móvil) ──
+// ── TOC toggle (drawer desde la izquierda) ──
 function initTocToggle() {
   const btn = document.getElementById('toc-toggle');
   const toc = document.getElementById('toc');
+  const overlay = document.getElementById('toc-overlay');
   if (!btn || !toc) return;
-  btn.addEventListener('click', () => {
-    toc.classList.toggle('toc-open');
-    btn.textContent = toc.classList.contains('toc-open') ? '✕ Cerrar' : '☰ Contenido';
-  });
+
+  function openToc() {
+    toc.classList.add('toc-open');
+    overlay?.classList.add('toc-open');
+    btn.textContent = '✕ Cerrar';
+  }
+  function closeToc() {
+    toc.classList.remove('toc-open');
+    overlay?.classList.remove('toc-open');
+    btn.textContent = '☰ Contenido';
+  }
+
+  btn.addEventListener('click', () => toc.classList.contains('toc-open') ? closeToc() : openToc());
+  overlay?.addEventListener('click', closeToc);
+
   // Cerrar al hacer clic en un link del TOC
   toc.addEventListener('click', e => {
-    if (e.target.tagName === 'A') {
-      toc.classList.remove('toc-open');
-      btn.textContent = '☰ Contenido';
-    }
+    if (e.target.tagName === 'A') closeToc();
   });
 }
 
@@ -197,6 +206,14 @@ async function loadManual() {
 
     window.addEventListener('scroll', highlightTOC, { passive: true });
     highlightTOC();
+
+    // Auto-export si viene desde index con ?export=
+    const exportParam = getParam('export');
+    if (exportParam === 'pdf') {
+      setTimeout(() => exportPDF(), 800);
+    } else if (exportParam === 'word') {
+      setTimeout(() => exportWord(), 400);
+    }
 
   } catch (e) {
     document.getElementById('manual-content').innerHTML =

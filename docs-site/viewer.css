@@ -177,13 +177,28 @@
 
 /* Responsive viewer */
 @media (max-width: 900px) {
-  .viewer-toc { display: none; }
-  .viewer-toc.toc-open {
+  .viewer-toc {
     display: block;
-    position: fixed; top: 60px; left: 0; right: 0; bottom: 0;
-    z-index: 50; width: 100%;
-    background: var(--bg-card2);
+    position: fixed;
+    top: 60px; left: 0; bottom: 0;
+    width: 280px;
+    transform: translateX(-100%);
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 50;
+    box-shadow: 4px 0 24px rgba(0,0,0,0.4);
   }
+  .viewer-toc.toc-open {
+    transform: translateX(0);
+  }
+  /* Overlay behind drawer */
+  .toc-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 49;
+    backdrop-filter: blur(2px);
+  }
+  .toc-overlay.toc-open { display: block; }
   .viewer-main { padding: 28px 20px 60px; }
 }
 

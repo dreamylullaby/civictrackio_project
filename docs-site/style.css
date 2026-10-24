@@ -320,7 +320,8 @@ code { font-family: 'Courier New', monospace; font-size: 0.85em; background: rgb
   color: #6D6DF9; font-size: 11px;
 }
 
-.manual-actions { display: flex; gap: 10px; }
+.manual-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.manual-dl-group { display: flex; gap: 6px; }
 .manual-btn-view {
   flex: 1; text-align: center;
   background: var(--blue); color: #fff;
