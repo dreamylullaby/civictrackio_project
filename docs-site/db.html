@@ -14,14 +14,14 @@
 
   <nav class="nav">
     <div class="nav-inner">
-      <div class="nav-brand">
+      <a href="index.html" class="nav-brand">
         <div class="nav-logo-circle">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
           </svg>
         </div>
         <span class="nav-name">Civic<span class="nav-name-accent">Track</span><span class="nav-name-io">IO</span></span>
-      </div>
+      </a>
       <div class="nav-links">
         <a href="index.html">← Volver</a>
         <a href="https://civictrackio.com" target="_blank" class="nav-btn">Dashboard →</a>
@@ -149,30 +149,408 @@
     </div>
   </section>
 
-  <!-- DIAGRAMA ER -->
+  <!-- DIAGRAMAS UML POR SPRINT -->
   <section class="section section-dark" id="diagrama">
     <div class="section-inner">
-      <div class="section-label">Diagrama entidad-relación</div>
-      <h2 class="section-title">Diagrama ER</h2>
-      <p class="section-sub">Relaciones entre las 16 tablas del sistema. Las líneas indican foreign keys.</p>
+      <div class="section-label">Diagramas UML</div>
+      <h2 class="section-title">Evolución del esquema por sprint</h2>
+      <p class="section-sub">Cada sprint añadió nuevas tablas y relaciones. Los diagramas muestran las entidades acumuladas hasta ese sprint.</p>
 
-      <div class="er-controls">
-        <button class="er-btn" id="btn-zoom-in">＋ Zoom</button>
-        <button class="er-btn" id="btn-zoom-out">－ Zoom</button>
-        <button class="er-btn" id="btn-reset">↺ Reset</button>
-        <span class="er-hint">También puedes hacer scroll sobre el diagrama</span>
+      <!-- Tabs -->
+      <div class="uml-tabs">
+        <button class="uml-tab active" data-sprint="1">Sprint 1</button>
+        <button class="uml-tab" data-sprint="2">Sprint 2</button>
+        <button class="uml-tab" data-sprint="3">Sprint 3</button>
+        <button class="uml-tab" data-sprint="4">Sprint 4</button>
       </div>
 
-      <div class="er-viewport" id="er-viewport">
-        <div class="er-canvas" id="er-canvas">
+      <!-- Sprint 1: zonas, usuarios, reportes -->
+      <div class="uml-panel active" id="uml-1">
+        <div class="uml-legend">
+          <span class="uml-leg uml-leg-new">● Nuevo en este sprint</span>
+        </div>
+        <div class="er-controls">
+          <button class="er-btn uml-zoom-in">＋</button>
+          <button class="er-btn uml-zoom-out">－</button>
+          <button class="er-btn uml-reset">↺</button>
+          <span class="er-hint">Arrastra o usa scroll para navegar</span>
+        </div>
+        <div class="er-viewport">
+          <div class="er-canvas" id="canvas-1">
+            <svg class="er-svg" id="svg-1" width="900" height="500"></svg>
 
-          <!-- SVG de relaciones (se dibuja desde JS) -->
-          <svg class="er-svg" id="er-svg" width="1400" height="960"></svg>
+            <div class="er-table" id="s1-zonas" style="left:40px;top:80px;">
+              <div class="er-table-header er-green"><span class="er-table-icon">🗺️</span><span class="er-table-name">zonas <span class="uml-new-badge">nuevo</span></span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">serial PK</span></div>
+                <div class="er-col">barrio <span class="er-type">varchar(80)</span></div>
+                <div class="er-col">comuna <span class="er-type">int 1–12</span></div>
+              </div>
+            </div>
 
-          <!-- TABLAS -->
+            <div class="er-table" id="s1-usuarios" style="left:340px;top:80px;">
+              <div class="er-table-header er-blue"><span class="er-table-icon">👤</span><span class="er-table-name">usuarios <span class="uml-new-badge">nuevo</span></span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+                <div class="er-col">username <span class="er-type">varchar(50)</span></div>
+                <div class="er-col">correo <span class="er-type">varchar(150)</span></div>
+                <div class="er-col">rol <span class="er-type">usuario|admin</span></div>
+                <div class="er-col">estado <span class="er-type">activo|bloqueado…</span></div>
+                <div class="er-col">auth_provider <span class="er-type">local|google</span></div>
+              </div>
+            </div>
 
-          <!-- usuarios (central) -->
-          <div class="er-table" id="t-usuarios" style="left:560px;top:380px;">
+            <div class="er-table" id="s1-reportes" style="left:190px;top:290px;">
+              <div class="er-table-header er-indigo"><span class="er-table-icon">📋</span><span class="er-table-name">reportes <span class="uml-new-badge">nuevo</span></span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+                <div class="er-col er-fk">🔗 usuario_id <span class="er-type">uuid FK</span></div>
+                <div class="er-col er-fk">🔗 zona_id <span class="er-type">int FK</span></div>
+                <div class="er-col">tipo_hurto <span class="er-type">varchar(30)</span></div>
+                <div class="er-col">fecha_incidente <span class="er-type">date</span></div>
+                <div class="er-col">estado <span class="er-type">activo|oculto…</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sprint 2: + corregimientos, veredas, secciones_dane, alertas, config_alertas, password_resets -->
+      <div class="uml-panel" id="uml-2">
+        <div class="uml-legend">
+          <span class="uml-leg uml-leg-new">● Nuevo</span>
+          <span class="uml-leg uml-leg-mod">● Modificado</span>
+          <span class="uml-leg uml-leg-existing">● Existente</span>
+        </div>
+        <div class="er-controls">
+          <button class="er-btn uml-zoom-in">＋</button>
+          <button class="er-btn uml-zoom-out">－</button>
+          <button class="er-btn uml-reset">↺</button>
+          <span class="er-hint">Arrastra o usa scroll para navegar</span>
+        </div>
+        <div class="er-viewport">
+          <div class="er-canvas" id="canvas-2">
+            <svg class="er-svg" id="svg-2" width="1200" height="700"></svg>
+
+            <div class="er-table" id="s2-zonas" style="left:20px;top:60px;">
+              <div class="er-table-header er-green"><span class="er-table-icon">🗺️</span><span class="er-table-name">zonas <span class="uml-mod-badge">+geom</span></span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">serial PK</span></div>
+                <div class="er-col">barrio <span class="er-type">varchar(80)</span></div>
+                <div class="er-col">geom <span class="er-type">MultiPolygon ★</span></div>
+              </div>
+            </div>
+
+            <div class="er-table" id="s2-corregimientos" style="left:20px;top:260px;">
+              <div class="er-table-header er-green"><span class="er-table-icon">🌄</span><span class="er-table-name">corregimientos <span class="uml-new-badge">nuevo</span></span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">serial PK</span></div>
+                <div class="er-col">nombre <span class="er-type">varchar(80)</span></div>
+                <div class="er-col">geom <span class="er-type">MultiPolygon</span></div>
+              </div>
+            </div>
+
+            <div class="er-table" id="s2-veredas" style="left:20px;top:450px;">
+              <div class="er-table-header er-green"><span class="er-table-icon">🏘️</span><span class="er-table-name">veredas <span class="uml-new-badge">nuevo</span></span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">serial PK</span></div>
+                <div class="er-col er-fk">🔗 corregimiento_id <span class="er-type">int FK</span></div>
+                <div class="er-col">nombre <span class="er-type">varchar(80)</span></div>
+              </div>
+            </div>
+
+            <div class="er-table" id="s2-secciones" style="left:20px;top:610px;">
+              <div class="er-table-header er-green"><span class="er-table-icon">📐</span><span class="er-table-name">secciones_dane <span class="uml-new-badge">nuevo</span></span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">serial PK</span></div>
+                <div class="er-col">comuna <span class="er-type">int</span></div>
+                <div class="er-col">geom <span class="er-type">MultiPolygon</span></div>
+              </div>
+            </div>
+
+            <div class="er-table" id="s2-usuarios" style="left:340px;top:60px;">
+              <div class="er-table-header er-blue"><span class="er-table-icon">👤</span><span class="er-table-name">usuarios <span class="uml-mod-badge">+fcm</span></span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+                <div class="er-col">username <span class="er-type">varchar(50)</span></div>
+                <div class="er-col">fcm_token <span class="er-type">text ★</span></div>
+              </div>
+            </div>
+
+            <div class="er-table" id="s2-reportes" style="left:340px;top:280px;">
+              <div class="er-table-header er-indigo"><span class="er-table-icon">📋</span><span class="er-table-name">reportes <span class="uml-mod-badge">+rural</span></span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+                <div class="er-col er-fk">🔗 usuario_id <span class="er-type">uuid FK</span></div>
+                <div class="er-col er-fk">🔗 zona_id <span class="er-type">int FK</span></div>
+                <div class="er-col er-fk">🔗 corregimiento_id <span class="er-type">int FK ★</span></div>
+                <div class="er-col er-fk">🔗 vereda_id <span class="er-type">int FK ★</span></div>
+                <div class="er-col">zona_tipo <span class="er-type">urbana|rural ★</span></div>
+              </div>
+            </div>
+
+            <div class="er-table" id="s2-alertas" style="left:680px;top:60px;">
+              <div class="er-table-header er-yellow"><span class="er-table-icon">🔔</span><span class="er-table-name">alertas <span class="uml-new-badge">nuevo</span></span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+                <div class="er-col er-fk">🔗 usuario_id <span class="er-type">uuid FK</span></div>
+                <div class="er-col er-fk">🔗 reporte_id <span class="er-type">uuid FK</span></div>
+                <div class="er-col">distancia_metros <span class="er-type">numeric</span></div>
+                <div class="er-col">leida <span class="er-type">boolean</span></div>
+              </div>
+            </div>
+
+            <div class="er-table" id="s2-config" style="left:680px;top:300px;">
+              <div class="er-table-header er-yellow"><span class="er-table-icon">⚙️</span><span class="er-table-name">configuracion_alertas <span class="uml-new-badge">nuevo</span></span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+                <div class="er-col er-fk">🔗 usuario_id <span class="er-type">uuid FK</span></div>
+                <div class="er-col">radio_metros <span class="er-type">int 100–5000</span></div>
+                <div class="er-col">activo <span class="er-type">boolean</span></div>
+              </div>
+            </div>
+
+            <div class="er-table" id="s2-pwreset" style="left:680px;top:510px;">
+              <div class="er-table-header er-red"><span class="er-table-icon">🔐</span><span class="er-table-name">password_resets <span class="uml-new-badge">nuevo</span></span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+                <div class="er-col er-fk">🔗 usuario_id <span class="er-type">uuid FK</span></div>
+                <div class="er-col">token <span class="er-type">text</span></div>
+                <div class="er-col">expiration <span class="er-type">timestamp</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sprint 3: + incidentes -->
+      <div class="uml-panel" id="uml-3">
+        <div class="uml-legend">
+          <span class="uml-leg uml-leg-new">● Nuevo</span>
+          <span class="uml-leg uml-leg-mod">● Modificado</span>
+          <span class="uml-leg uml-leg-existing">● Existente</span>
+        </div>
+        <div class="er-controls">
+          <button class="er-btn uml-zoom-in">＋</button>
+          <button class="er-btn uml-zoom-out">－</button>
+          <button class="er-btn uml-reset">↺</button>
+          <span class="er-hint">Arrastra o usa scroll para navegar</span>
+        </div>
+        <div class="er-viewport">
+          <div class="er-canvas" id="canvas-3">
+            <svg class="er-svg" id="svg-3" width="1100" height="660"></svg>
+
+            <div class="er-table" id="s3-zonas" style="left:20px;top:80px;">
+              <div class="er-table-header er-green"><span class="er-table-icon">🗺️</span><span class="er-table-name">zonas</span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">serial PK</span></div>
+                <div class="er-col">barrio <span class="er-type">varchar(80)</span></div>
+              </div>
+            </div>
+
+            <div class="er-table" id="s3-corregimientos" style="left:20px;top:240px;">
+              <div class="er-table-header er-green"><span class="er-table-icon">🌄</span><span class="er-table-name">corregimientos</span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">serial PK</span></div>
+                <div class="er-col">nombre <span class="er-type">varchar(80)</span></div>
+              </div>
+            </div>
+
+            <div class="er-table" id="s3-veredas" style="left:20px;top:390px;">
+              <div class="er-table-header er-green"><span class="er-table-icon">🏘️</span><span class="er-table-name">veredas</span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">serial PK</span></div>
+                <div class="er-col er-fk">🔗 corregimiento_id <span class="er-type">FK</span></div>
+              </div>
+            </div>
+
+            <div class="er-table" id="s3-usuarios" style="left:320px;top:60px;">
+              <div class="er-table-header er-blue"><span class="er-table-icon">👤</span><span class="er-table-name">usuarios</span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+                <div class="er-col">username <span class="er-type">varchar(50)</span></div>
+              </div>
+            </div>
+
+            <div class="er-table" id="s3-reportes" style="left:320px;top:250px;">
+              <div class="er-table-header er-indigo"><span class="er-table-icon">📋</span><span class="er-table-name">reportes <span class="uml-mod-badge">+incidente_id</span></span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+                <div class="er-col er-fk">🔗 usuario_id <span class="er-type">FK</span></div>
+                <div class="er-col er-fk">🔗 zona_id <span class="er-type">FK</span></div>
+                <div class="er-col er-fk">🔗 incidente_id <span class="er-type">uuid FK ★</span></div>
+                <div class="er-col er-fk">🔗 corregimiento_id <span class="er-type">FK</span></div>
+                <div class="er-col er-fk">🔗 vereda_id <span class="er-type">FK</span></div>
+              </div>
+            </div>
+
+            <div class="er-table" id="s3-incidentes" style="left:320px;top:530px;">
+              <div class="er-table-header er-orange"><span class="er-table-icon">⚠️</span><span class="er-table-name">incidentes <span class="uml-new-badge">nuevo</span></span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+                <div class="er-col er-fk">🔗 reporte_principal_id <span class="er-type">uuid FK</span></div>
+                <div class="er-col er-fk">🔗 zona_id <span class="er-type">int FK</span></div>
+                <div class="er-col er-fk">🔗 corregimiento_id <span class="er-type">FK</span></div>
+                <div class="er-col er-fk">🔗 vereda_id <span class="er-type">FK</span></div>
+                <div class="er-col">cantidad_reportes <span class="er-type">int</span></div>
+              </div>
+            </div>
+
+            <div class="er-table" id="s3-alertas" style="left:680px;top:60px;">
+              <div class="er-table-header er-yellow"><span class="er-table-icon">🔔</span><span class="er-table-name">alertas</span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+                <div class="er-col er-fk">🔗 usuario_id <span class="er-type">FK</span></div>
+                <div class="er-col er-fk">🔗 reporte_id <span class="er-type">FK</span></div>
+              </div>
+            </div>
+
+            <div class="er-table" id="s3-config" style="left:680px;top:260px;">
+              <div class="er-table-header er-yellow"><span class="er-table-icon">⚙️</span><span class="er-table-name">configuracion_alertas</span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+                <div class="er-col er-fk">🔗 usuario_id <span class="er-type">FK</span></div>
+                <div class="er-col">radio_metros <span class="er-type">int</span></div>
+              </div>
+            </div>
+
+            <div class="er-table" id="s3-pwreset" style="left:680px;top:430px;">
+              <div class="er-table-header er-red"><span class="er-table-icon">🔐</span><span class="er-table-name">password_resets</span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+                <div class="er-col er-fk">🔗 usuario_id <span class="er-type">FK</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sprint 4: + auditoria x3, solicitudes_eliminacion, zonas_riesgo, aceptacion_terminos -->
+      <div class="uml-panel" id="uml-4">
+        <div class="uml-legend">
+          <span class="uml-leg uml-leg-new">● Nuevo</span>
+          <span class="uml-leg uml-leg-existing">● Existente</span>
+        </div>
+        <div class="er-controls">
+          <button class="er-btn uml-zoom-in">＋</button>
+          <button class="er-btn uml-zoom-out">－</button>
+          <button class="er-btn uml-reset">↺</button>
+          <span class="er-hint">Arrastra o usa scroll para navegar</span>
+        </div>
+        <div class="er-viewport">
+          <div class="er-canvas" id="canvas-4">
+            <svg class="er-svg" id="svg-4" width="1300" height="800"></svg>
+
+            <div class="er-table" id="s4-usuarios" style="left:520px;top:300px;">
+              <div class="er-table-header er-blue"><span class="er-table-icon">👤</span><span class="er-table-name">usuarios</span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+                <div class="er-col">username <span class="er-type">varchar(50)</span></div>
+                <div class="er-col">rol <span class="er-type">usuario|admin</span></div>
+              </div>
+            </div>
+
+            <div class="er-table" id="s4-reportes" style="left:520px;top:540px;">
+              <div class="er-table-header er-indigo"><span class="er-table-icon">📋</span><span class="er-table-name">reportes</span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+                <div class="er-col er-fk">🔗 usuario_id <span class="er-type">FK</span></div>
+                <div class="er-col">tipo_hurto <span class="er-type">varchar</span></div>
+              </div>
+            </div>
+
+            <div class="er-table" id="s4-incidentes" style="left:520px;top:80px;">
+              <div class="er-table-header er-orange"><span class="er-table-icon">⚠️</span><span class="er-table-name">incidentes</span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+                <div class="er-col er-fk">🔗 reporte_principal_id <span class="er-type">FK</span></div>
+              </div>
+            </div>
+
+            <div class="er-table" id="s4-audit-rep" style="left:20px;top:80px;">
+              <div class="er-table-header er-gray"><span class="er-table-icon">📝</span><span class="er-table-name">auditoria_reportes <span class="uml-new-badge">nuevo</span></span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+                <div class="er-col er-fk">🔗 admin_id <span class="er-type">uuid FK</span></div>
+                <div class="er-col er-fk">🔗 reporte_id <span class="er-type">uuid FK</span></div>
+                <div class="er-col">accion <span class="er-type">ocultar|eliminar…</span></div>
+              </div>
+            </div>
+
+            <div class="er-table" id="s4-audit-edit" style="left:20px;top:320px;">
+              <div class="er-table-header er-gray"><span class="er-table-icon">✏️</span><span class="er-table-name">auditoria_edicion <span class="uml-new-badge">nuevo</span></span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+                <div class="er-col er-fk">🔗 admin_id <span class="er-type">uuid FK</span></div>
+                <div class="er-col er-fk">🔗 reporte_id <span class="er-type">uuid FK</span></div>
+                <div class="er-col">campos_modificados <span class="er-type">text[]</span></div>
+              </div>
+            </div>
+
+            <div class="er-table" id="s4-audit-usr" style="left:20px;top:540px;">
+              <div class="er-table-header er-gray"><span class="er-table-icon">🛡️</span><span class="er-table-name">auditoria_usuarios <span class="uml-new-badge">nuevo</span></span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+                <div class="er-col er-fk">🔗 admin_id <span class="er-type">uuid FK</span></div>
+                <div class="er-col er-fk">🔗 usuario_id <span class="er-type">uuid FK</span></div>
+                <div class="er-col">accion <span class="er-type">bloquear|eliminar…</span></div>
+              </div>
+            </div>
+
+            <div class="er-table" id="s4-solicitudes" style="left:900px;top:80px;">
+              <div class="er-table-header er-orange"><span class="er-table-icon">🗑️</span><span class="er-table-name">solicitudes_eliminacion <span class="uml-new-badge">nuevo</span></span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+                <div class="er-col er-fk">🔗 reporte_id <span class="er-type">uuid FK</span></div>
+                <div class="er-col er-fk">🔗 usuario_id <span class="er-type">uuid FK</span></div>
+                <div class="er-col er-fk">🔗 admin_id <span class="er-type">uuid FK null</span></div>
+                <div class="er-col">estado_solicitud <span class="er-type">pendiente|…</span></div>
+              </div>
+            </div>
+
+            <div class="er-table" id="s4-zonas-riesgo" style="left:900px;top:360px;">
+              <div class="er-table-header er-red"><span class="er-table-icon">🚨</span><span class="er-table-name">zonas_riesgo <span class="uml-new-badge">nuevo</span></span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+                <div class="er-col">nivel_riesgo <span class="er-type">seguro|medio…</span></div>
+                <div class="er-col">cantidad_reportes <span class="er-type">int</span></div>
+                <div class="er-col">radio <span class="er-type">int (metros)</span></div>
+              </div>
+            </div>
+
+            <div class="er-table" id="s4-terminos" style="left:900px;top:580px;">
+              <div class="er-table-header er-teal"><span class="er-table-icon">📄</span><span class="er-table-name">aceptacion_terminos <span class="uml-new-badge">nuevo</span></span></div>
+              <div class="er-table-body">
+                <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+                <div class="er-col er-fk">🔗 usuario_id <span class="er-type">uuid FK</span></div>
+                <div class="er-col">version_terminos <span class="er-type">varchar(10)</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DIAGRAMA COMPLETO -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label">Diagrama completo</div>
+      <h2 class="section-title">Todas las tablas — esquema final</h2>
+      <p class="section-sub">Vista consolidada de las 16 tablas con sus relaciones.</p>
+      <div class="er-controls">
+        <button class="er-btn" id="full-zoom-in">＋</button>
+        <button class="er-btn" id="full-zoom-out">－</button>
+        <button class="er-btn" id="full-reset">↺</button>
+        <span class="er-hint">Arrastra o usa scroll para navegar</span>
+      </div>
+      <div class="er-viewport" id="full-viewport">
+        <div class="er-canvas" id="full-canvas">
+          <svg class="er-svg" id="svg-full" width="1600" height="1100"></svg>
+
+          <!-- usuarios -->
+          <div class="er-table" id="t-usuarios" style="left:560px;top:340px;">
             <div class="er-table-header er-blue">
               <span class="er-table-icon">👤</span>
               <span class="er-table-name">usuarios</span>
@@ -189,7 +567,7 @@
           </div>
 
           <!-- reportes -->
-          <div class="er-table" id="t-reportes" style="left:240px;top:340px;">
+          <div class="er-table" id="t-reportes" style="left:560px;top:560px;">
             <div class="er-table-header er-indigo">
               <span class="er-table-icon">📋</span>
               <span class="er-table-name">reportes</span>
@@ -207,7 +585,7 @@
           </div>
 
           <!-- zonas -->
-          <div class="er-table" id="t-zonas" style="left:20px;top:100px;">
+          <div class="er-table" id="t-zonas" style="left:60px;top:100px;">
             <div class="er-table-header er-green">
               <span class="er-table-icon">🗺️</span>
               <span class="er-table-name">zonas</span>
@@ -221,7 +599,7 @@
           </div>
 
           <!-- corregimientos -->
-          <div class="er-table" id="t-corregimientos" style="left:20px;top:340px;">
+          <div class="er-table" id="t-corregimientos" style="left:60px;top:340px;">
             <div class="er-table-header er-green">
               <span class="er-table-icon">🌄</span>
               <span class="er-table-name">corregimientos</span>
@@ -234,7 +612,7 @@
           </div>
 
           <!-- veredas -->
-          <div class="er-table" id="t-veredas" style="left:20px;top:530px;">
+          <div class="er-table" id="t-veredas" style="left:60px;top:540px;">
             <div class="er-table-header er-green">
               <span class="er-table-icon">🏘️</span>
               <span class="er-table-name">veredas</span>
@@ -248,7 +626,7 @@
           </div>
 
           <!-- secciones_dane -->
-          <div class="er-table" id="t-secciones" style="left:20px;top:720px;">
+          <div class="er-table" id="t-secciones" style="left:60px;top:740px;">
             <div class="er-table-header er-green">
               <span class="er-table-icon">📐</span>
               <span class="er-table-name">secciones_dane</span>
@@ -262,7 +640,7 @@
           </div>
 
           <!-- incidentes -->
-          <div class="er-table" id="t-incidentes" style="left:240px;top:680px;">
+          <div class="er-table" id="t-incidentes" style="left:560px;top:100px;">
             <div class="er-table-header er-orange">
               <span class="er-table-icon">⚠️</span>
               <span class="er-table-name">incidentes</span>
@@ -279,7 +657,7 @@
           </div>
 
           <!-- alertas -->
-          <div class="er-table" id="t-alertas" style="left:870px;top:160px;">
+          <div class="er-table" id="t-alertas" style="left:1050px;top:100px;">
             <div class="er-table-header er-yellow">
               <span class="er-table-icon">🔔</span>
               <span class="er-table-name">alertas</span>
@@ -294,7 +672,7 @@
           </div>
 
           <!-- configuracion_alertas -->
-          <div class="er-table" id="t-config-alertas" style="left:870px;top:380px;">
+          <div class="er-table" id="t-config-alertas" style="left:1050px;top:320px;">
             <div class="er-table-header er-yellow">
               <span class="er-table-icon">⚙️</span>
               <span class="er-table-name">configuracion_alertas</span>
@@ -308,7 +686,7 @@
           </div>
 
           <!-- password_resets -->
-          <div class="er-table" id="t-pw-resets" style="left:870px;top:560px;">
+          <div class="er-table" id="t-pw-resets" style="left:1050px;top:510px;">
             <div class="er-table-header er-red">
               <span class="er-table-icon">🔐</span>
               <span class="er-table-name">password_resets</span>
@@ -323,7 +701,7 @@
           </div>
 
           <!-- auditoria_reportes -->
-          <div class="er-table" id="t-audit-rep" style="left:1130px;top:100px;">
+          <div class="er-table" id="t-audit-rep" style="left:1050px;top:700px;">
             <div class="er-table-header er-gray">
               <span class="er-table-icon">📝</span>
               <span class="er-table-name">auditoria_reportes</span>
@@ -337,7 +715,7 @@
           </div>
 
           <!-- auditoria_edicion_reportes -->
-          <div class="er-table" id="t-audit-edit" style="left:1130px;top:330px;">
+          <div class="er-table" id="t-audit-edit" style="left:1050px;top:890px;">
             <div class="er-table-header er-gray">
               <span class="er-table-icon">✏️</span>
               <span class="er-table-name">auditoria_edicion_reportes</span>
@@ -352,7 +730,7 @@
           </div>
 
           <!-- auditoria_usuarios -->
-          <div class="er-table" id="t-audit-usr" style="left:1130px;top:560px;">
+          <div class="er-table" id="t-audit-usr" style="left:560px;top:860px;">
             <div class="er-table-header er-gray">
               <span class="er-table-icon">🛡️</span>
               <span class="er-table-name">auditoria_usuarios</span>
@@ -366,7 +744,7 @@
           </div>
 
           <!-- zonas_riesgo -->
-          <div class="er-table" id="t-zonas-riesgo" style="left:560px;top:740px;">
+          <div class="er-table" id="t-zonas-riesgo" style="left:310px;top:860px;">
             <div class="er-table-header er-red">
               <span class="er-table-icon">🚨</span>
               <span class="er-table-name">zonas_riesgo</span>
@@ -382,7 +760,7 @@
           </div>
 
           <!-- solicitudes_eliminacion -->
-          <div class="er-table" id="t-solicitudes" style="left:560px;top:100px;">
+          <div class="er-table" id="t-solicitudes" style="left:310px;top:100px;">
             <div class="er-table-header er-orange">
               <span class="er-table-icon">🗑️</span>
               <span class="er-table-name">solicitudes_eliminacion</span>
@@ -397,7 +775,7 @@
           </div>
 
           <!-- aceptacion_terminos -->
-          <div class="er-table" id="t-terminos" style="left:870px;top:750px;">
+          <div class="er-table" id="t-terminos" style="left:310px;top:380px;">
             <div class="er-table-header er-teal">
               <span class="er-table-icon">📄</span>
               <span class="er-table-name">aceptacion_terminos</span>
@@ -412,12 +790,10 @@
 
         </div><!-- /er-canvas -->
       </div><!-- /er-viewport -->
-
     </div>
   </section>
 
-  <!-- TABLAS DETALLE -->
-  <section class="section">
+<section class="section">
     <div class="section-inner">
       <div class="section-label">Referencia</div>
       <h2 class="section-title">Funciones y triggers</h2>
