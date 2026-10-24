@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manual · CivicTrackIO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="viewer.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="nav-brand">
+        <div class="nav-logo-circle">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <span class="nav-name">Civic<span class="nav-name-accent">Track</span><span class="nav-name-io">IO</span></span>
+      </div>
+      <div class="nav-links">
+        <a href="index.html#manuales">← Volver a manuales</a>
+        <a href="https://civictrackio.com" target="_blank" class="nav-btn">Dashboard →</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="viewer-layout">
+    <!-- TOC sidebar -->
+    <aside class="viewer-toc" id="toc">
+      <div class="toc-title">Contenido</div>
+      <ul id="toc-list"></ul>
+    </aside>
+
+    <!-- Content -->
+    <main class="viewer-main">
+      <div class="viewer-toolbar">
+        <span id="manual-title-label" class="viewer-label"></span>
+        <a id="download-btn" href="#" download class="manual-btn-dl" style="width:fit-content;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Descargar .md
+        </a>
+      </div>
+      <div id="manual-content" class="markdown-body">
+        <div class="viewer-loading">Cargando manual…</div>
+      </div>
+    </main>
+  </div>
+
+  <!-- marked.js para renderizar Markdown -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@9/marked.min.js"></script>
+  <script src="viewer.js"></script>
+</body>
+</html>
