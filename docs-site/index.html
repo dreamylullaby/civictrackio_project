@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CivicTrackIO · Documentación</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="nav-brand">
+        <div class="nav-logo-circle">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <span class="nav-name">Civic<span class="nav-name-accent">Track</span><span class="nav-name-io">IO</span></span>
+      </div>
+      <div class="nav-links">
+        <a href="#arquitectura">Arquitectura</a>
+        <a href="#stack">Stack</a>
+        <a href="#base-de-datos">BD</a>
+        <a href="#manuales">Manuales</a>
+        <a href="https://civictrackio.com" target="_blank" class="nav-btn">Ir al dashboard →</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-deco hero-deco-1"></div>
+    <div class="hero-deco hero-deco-2"></div>
+    <div class="hero-deco hero-deco-3"></div>
+    <div class="hero-inner">
+      <div class="hero-badge">Versión 1.0 · 2026</div>
+      <h1 class="hero-title">Sistema ciudadano de<br/>reporte de hurtos</h1>
+      <p class="hero-sub">CivicTrackIO conecta a la ciudadanía con información georreferenciada de hurtos en Pasto. Reporta, consulta el mapa y recibe alertas en tiempo real.</p>
+      <div class="hero-actions">
+        <a href="#manuales" class="btn-primary">Ver manuales</a>
+        <a href="#arquitectura" class="btn-ghost">Arquitectura del sistema</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-num">3</span>
+          <span class="hero-stat-label">Capas del sistema</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">17</span>
+          <span class="hero-stat-label">Corregimientos</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">4</span>
+          <span class="hero-stat-label">Tipos de hurto</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">4</span>
+          <span class="hero-stat-label">Manuales</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ARQUITECTURA ── -->
+  <section class="section" id="arquitectura">
+    <div class="section-inner">
+      <div class="section-label">Arquitectura</div>
+      <h2 class="section-title">Tres capas, un ecosistema</h2>
+      <p class="section-sub">El sistema se compone de una app móvil Android, un panel de administración web y una API REST, todos conectados a Supabase como base de datos principal.</p>
+
+      <div class="arch-diagram">
+        <!-- App móvil -->
+        <div class="arch-node arch-node-blue">
+          <div class="arch-node-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+              <line x1="12" y1="18" x2="12.01" y2="18"/>
+            </svg>
+          </div>
+          <div class="arch-node-title">App Móvil</div>
+          <div class="arch-node-tech">Flutter · Android</div>
+          <div class="arch-node-desc">Mapa interactivo, registro de incidentes, alertas push y gestión de perfil.</div>
+          <div class="arch-node-tags">
+            <span>flutter_map</span>
+            <span>Firebase Auth</span>
+            <span>FCM</span>
+          </div>
+        </div>
+
+        <!-- Flecha -->
+        <div class="arch-arrow">
+          <div class="arch-arrow-line"></div>
+          <div class="arch-arrow-label">REST API<br/>JWT</div>
+          <div class="arch-arrow-line"></div>
+        </div>
+
+        <!-- Backend -->
+        <div class="arch-node arch-node-indigo">
+          <div class="arch-node-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <div class="arch-node-title">Backend API</div>
+          <div class="arch-node-tech">Node.js · Express 5</div>
+          <div class="arch-node-desc">Arquitectura limpia en 4 capas. Autenticación, reportes, alertas, perfil y administración.</div>
+          <div class="arch-node-tags">
+            <span>JWT 8h</span>
+            <span>Rate limit</span>
+            <span>Resend</span>
+          </div>
+        </div>
+
+        <!-- Flecha -->
+        <div class="arch-arrow">
+          <div class="arch-arrow-line"></div>
+          <div class="arch-arrow-label">REST API<br/>JWT Admin</div>
+          <div class="arch-arrow-line"></div>
+        </div>
+
+        <!-- Dashboard -->
+        <div class="arch-node arch-node-violet">
+          <div class="arch-node-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+              <rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
+            </svg>
+          </div>
+          <div class="arch-node-title">Dashboard Web</div>
+          <div class="arch-node-tech">React · Vite · Netlify</div>
+          <div class="arch-node-desc">Panel exclusivo para administradores. Moderación, estadísticas y exportación.</div>
+          <div class="arch-node-tags">
+            <span>Solo admins</span>
+            <span>SessionStorage</span>
+            <span>CSV/Excel</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Servicios externos -->
+      <div class="services-row">
+        <div class="service-card">
+          <div class="service-icon service-icon-green">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          </div>
+          <div>
+            <div class="service-name">Supabase</div>
+            <div class="service-desc">PostgreSQL + PostGIS · Base de datos, funciones RPC geoespaciales y Storage</div>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon service-icon-orange">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <div class="service-name">Firebase</div>
+            <div class="service-desc">Authentication (Google Sign-In) · Cloud Messaging (notificaciones push)</div>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon service-icon-blue">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="service-name">Resend</div>
+            <div class="service-desc">Correos transaccionales desde <code>mail.civictrackio.com</code></div>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-icon service-icon-purple">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="service-name">Mapbox</div>
+            <div class="service-desc">Mapas vectoriales · Estilos streets-v12 y dark-v11</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STACK ── -->
+  <section class="section section-dark" id="stack">
+    <div class="section-inner">
+      <div class="section-label">Stack tecnológico</div>
+      <h2 class="section-title">Tecnologías utilizadas</h2>
+      <div class="stack-grid">
+        <div class="stack-group">
+          <div class="stack-group-title">App Móvil</div>
+          <div class="stack-items">
+            <div class="stack-item"><span class="stack-dot stack-dot-blue"></span>Flutter / Dart</div>
+            <div class="stack-item"><span class="stack-dot stack-dot-blue"></span>flutter_map + marker cluster</div>
+            <div class="stack-item"><span class="stack-dot stack-dot-blue"></span>Provider (state management)</div>
+            <div class="stack-item"><span class="stack-dot stack-dot-blue"></span>Firebase Auth + FCM</div>
+            <div class="stack-item"><span class="stack-dot stack-dot-blue"></span>Geolocator · flutter_dotenv</div>
+          </div>
+        </div>
+        <div class="stack-group">
+          <div class="stack-group-title">Backend</div>
+          <div class="stack-items">
+            <div class="stack-item"><span class="stack-dot stack-dot-indigo"></span>Node.js + Express 5</div>
+            <div class="stack-item"><span class="stack-dot stack-dot-indigo"></span>Arquitectura limpia (4 capas)</div>
+            <div class="stack-item"><span class="stack-dot stack-dot-indigo"></span>JWT · bcrypt · express-rate-limit</div>
+            <div class="stack-item"><span class="stack-dot stack-dot-indigo"></span>Supabase JS Client</div>
+            <div class="stack-item"><span class="stack-dot stack-dot-indigo"></span>Firebase Admin · Resend · ExcelJS</div>
+          </div>
+        </div>
+        <div class="stack-group">
+          <div class="stack-group-title">Dashboard Web</div>
+          <div class="stack-items">
+            <div class="stack-item"><span class="stack-dot stack-dot-violet"></span>React 18 + Vite</div>
+            <div class="stack-item"><span class="stack-dot stack-dot-violet"></span>React Router v6</div>
+            <div class="stack-item"><span class="stack-dot stack-dot-violet"></span>Axios (cliente HTTP)</div>
+            <div class="stack-item"><span class="stack-dot stack-dot-violet"></span>CSS variables + modo oscuro</div>
+            <div class="stack-item"><span class="stack-dot stack-dot-violet"></span>Netlify (hosting)</div>
+          </div>
+        </div>
+        <div class="stack-group">
+          <div class="stack-group-title">Base de datos</div>
+          <div class="stack-items">
+            <div class="stack-item"><span class="stack-dot stack-dot-green"></span>Supabase (PostgreSQL cloud)</div>
+            <div class="stack-item"><span class="stack-dot stack-dot-green"></span>PostGIS (geometrías geoespaciales)</div>
+            <div class="stack-item"><span class="stack-dot stack-dot-green"></span>pg_trgm (búsqueda fuzzy)</div>
+            <div class="stack-item"><span class="stack-dot stack-dot-green"></span>Funciones RPC + Triggers</div>
+            <div class="stack-item"><span class="stack-dot stack-dot-green"></span>Render (backend hosting)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BASE DE DATOS ── -->
+  <section class="section" id="base-de-datos">
+    <div class="section-inner">
+      <div class="section-label">Datos</div>
+      <h2 class="section-title">Base de datos</h2>
+      <p class="section-sub">Esquema completo en PostgreSQL 17 + PostGIS. Scripts por sprint, diagrama ER interactivo y documentación de funciones y triggers.</p>
+      <a href="db.html" class="db-entry-card">
+        <div class="db-entry-left">
+          <div class="db-entry-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse cx="12" cy="5" rx="9" ry="3"/>
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+            </svg>
+          </div>
+          <div>
+            <div class="db-entry-title">Esquema · Diagrama ER · Scripts SQL</div>
+            <div class="db-entry-sub">16 tablas · 6 funciones · 3 triggers · 8 vistas · PostGIS</div>
+            <div class="db-entry-tags">
+              <span>PostgreSQL 17</span>
+              <span>PostGIS</span>
+              <span>Supabase</span>
+              <span>5 scripts</span>
+            </div>
+          </div>
+        </div>
+        <div class="db-entry-arrow">Ver esquema →</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── MANUALES ── -->
+  <section class="section section-dark" id="manuales">
+    <div class="section-inner">
+      <div class="section-label">Documentación</div>
+      <h2 class="section-title">Manuales del sistema</h2>
+      <p class="section-sub">Documentación completa para usuarios finales, administradores y desarrolladores.</p>
+
+      <div class="manuals-grid">
+
+        <div class="manual-card">
+          <div class="manual-card-header manual-header-blue">
+            <div class="manual-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                <line x1="12" y1="18" x2="12.01" y2="18"/>
+              </svg>
+            </div>
+            <div class="manual-badge">Usuario final</div>
+          </div>
+          <div class="manual-card-body">
+            <h3 class="manual-title">Manual de usuario<br/>App móvil</h3>
+            <p class="manual-desc">Instalación, registro, uso del mapa con clustering, registro de incidentes, alertas por proximidad y gestión de cuenta.</p>
+            <ul class="manual-topics">
+              <li>Instalación del APK</li>
+              <li>Mapa interactivo y filtros</li>
+              <li>Registro de hurtos</li>
+              <li>Alertas y notificaciones</li>
+            </ul>
+            <div class="manual-actions">
+              <a href="viewer.html?manual=usuario" class="manual-btn-view">Ver manual</a>
+              <a href="manuales/CivicTrackIO - Manual de usuario final (App móvil).md" download class="manual-btn-dl">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Descargar
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="manual-card">
+          <div class="manual-card-header manual-header-indigo">
+            <div class="manual-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+                <rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
+              </svg>
+            </div>
+            <div class="manual-badge">Administrador</div>
+          </div>
+          <div class="manual-card-body">
+            <h3 class="manual-title">Manual de administrador<br/>Dashboard web</h3>
+            <p class="manual-desc">Gestión de incidentes, usuarios y solicitudes de eliminación. Estadísticas, exportación y buenas prácticas de moderación.</p>
+            <ul class="manual-topics">
+              <li>Ingreso al panel</li>
+              <li>Gestión de incidentes</li>
+              <li>Gestión de usuarios</li>
+              <li>Solicitudes de eliminación</li>
+            </ul>
+            <div class="manual-actions">
+              <a href="viewer.html?manual=admin" class="manual-btn-view">Ver manual</a>
+              <a href="manuales/CivicTrackIO - Manual de administrador (Dashboard web).md" download class="manual-btn-dl">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Descargar
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="manual-card">
+          <div class="manual-card-header manual-header-violet">
+            <div class="manual-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+              </svg>
+            </div>
+            <div class="manual-badge">Desarrollador</div>
+          </div>
+          <div class="manual-card-body">
+            <h3 class="manual-title">Manual técnico<br/>Instalación y configuración</h3>
+            <p class="manual-desc">Instalación local del backend, dashboard y app móvil. Variables de entorno, base de datos, Firebase y primer administrador.</p>
+            <ul class="manual-topics">
+              <li>Arquitectura del sistema</li>
+              <li>Variables de entorno</li>
+              <li>API REST completa</li>
+              <li>Reglas de negocio</li>
+            </ul>
+            <div class="manual-actions">
+              <a href="viewer.html?manual=tecnico" class="manual-btn-view">Ver manual</a>
+              <a href="manuales/CivicTrackIO - Manual técnico de instalación y configuración (Developer).md" download class="manual-btn-dl">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Descargar
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="manual-card">
+          <div class="manual-card-header manual-header-green">
+            <div class="manual-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+              </svg>
+            </div>
+            <div class="manual-badge">DevOps</div>
+          </div>
+          <div class="manual-card-body">
+            <h3 class="manual-title">Manual de despliegue<br/>Render · Netlify · Supabase</h3>
+            <p class="manual-desc">Orden de despliegue, configuración de Render, Netlify, Supabase, Firebase, Resend y distribución del APK Android.</p>
+            <ul class="manual-topics">
+              <li>Orden de despliegue</li>
+              <li>Variables de producción</li>
+              <li>Dominio y DNS</li>
+              <li>Checklist post-despliegue</li>
+            </ul>
+            <div class="manual-actions">
+              <a href="viewer.html?manual=despliegue" class="manual-btn-view">Ver manual</a>
+              <a href="manuales/CivicTrackIO - Manual de despliegue.md" download class="manual-btn-dl">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Descargar
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="nav-logo-circle" style="width:32px;height:32px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <span class="nav-name" style="font-size:16px;">Civic<span class="nav-name-accent">Track</span><span class="nav-name-io">IO</span></span>
+      </div>
+      <p class="footer-copy">Sistema de reporte ciudadano de hurtos · Pasto, Nariño · 2026</p>
+      <div class="footer-links">
+        <a href="https://civictrackio.com" target="_blank">Dashboard</a>
+        <span>·</span>
+        <a href="#manuales">Manuales</a>
+        <span>·</span>
+        <a href="#arquitectura">Arquitectura</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

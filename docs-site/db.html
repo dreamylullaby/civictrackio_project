@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Base de datos · CivicTrackIO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="db.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="nav-brand">
+        <div class="nav-logo-circle">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <span class="nav-name">Civic<span class="nav-name-accent">Track</span><span class="nav-name-io">IO</span></span>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">← Volver</a>
+        <a href="https://civictrackio.com" target="_blank" class="nav-btn">Dashboard →</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="db-hero">
+    <div class="db-hero-inner">
+      <div class="hero-badge">PostgreSQL 17 · PostGIS · Supabase</div>
+      <h1 class="db-hero-title">Esquema de base de datos</h1>
+      <p class="db-hero-sub">16 tablas, funciones RPC geoespaciales, triggers automáticos y vistas de análisis.</p>
+      <div class="db-hero-stats">
+        <div class="db-stat"><span class="db-stat-num">16</span><span class="db-stat-label">Tablas</span></div>
+        <div class="db-stat-div"></div>
+        <div class="db-stat"><span class="db-stat-num">6</span><span class="db-stat-label">Funciones</span></div>
+        <div class="db-stat-div"></div>
+        <div class="db-stat"><span class="db-stat-num">3</span><span class="db-stat-label">Triggers</span></div>
+        <div class="db-stat-div"></div>
+        <div class="db-stat"><span class="db-stat-num">8</span><span class="db-stat-label">Vistas</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCRIPTS SQL -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label">Scripts</div>
+      <h2 class="section-title">Scripts SQL por sprint</h2>
+      <p class="section-sub">El esquema se construyó de forma incremental a lo largo de 4 sprints.</p>
+      <div class="sql-grid">
+
+        <div class="sql-card">
+          <div class="sql-card-header sql-header-blue">
+            <div class="sql-sprint-badge">Sprint base</div>
+            <div class="sql-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            </div>
+          </div>
+          <div class="sql-card-body">
+            <div class="sql-title">script_saferoute_bd.sql</div>
+            <div class="sql-desc">Script consolidado completo. Todas las tablas, índices, funciones, triggers y vistas en un solo archivo.</div>
+            <div class="sql-tags"><span>16 tablas</span><span>Completo</span><span>Producción</span></div>
+            <a href="sql/script_saferoute_bd.sql" download class="sql-dl-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar SQL
+            </a>
+          </div>
+        </div>
+
+        <div class="sql-card">
+          <div class="sql-card-header sql-header-indigo">
+            <div class="sql-sprint-badge">Sprint 1</div>
+            <div class="sql-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            </div>
+          </div>
+          <div class="sql-card-body">
+            <div class="sql-title">script_sprint1.sql</div>
+            <div class="sql-desc">HU-01, HU-02, HU-06. Tablas base: usuarios, zonas, reportes. Búsqueda difusa con Levenshtein.</div>
+            <div class="sql-tags"><span>usuarios</span><span>zonas</span><span>reportes</span></div>
+            <a href="sql/script_sprint1.sql" download class="sql-dl-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar SQL
+            </a>
+          </div>
+        </div>
+
+        <div class="sql-card">
+          <div class="sql-card-header sql-header-violet">
+            <div class="sql-sprint-badge">Sprint 2</div>
+            <div class="sql-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            </div>
+          </div>
+          <div class="sql-card-body">
+            <div class="sql-title">script_sprint2.sql</div>
+            <div class="sql-desc">HU-07 a HU-13. PostGIS, corregimientos, veredas, alertas, password_resets. Triggers geoespaciales.</div>
+            <div class="sql-tags"><span>PostGIS</span><span>alertas</span><span>corregimientos</span></div>
+            <a href="sql/script_sprint2.sql" download class="sql-dl-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar SQL
+            </a>
+          </div>
+        </div>
+
+        <div class="sql-card">
+          <div class="sql-card-header sql-header-teal">
+            <div class="sql-sprint-badge">Sprint 3</div>
+            <div class="sql-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            </div>
+          </div>
+          <div class="sql-card-body">
+            <div class="sql-title">script_sprint3.sql</div>
+            <div class="sql-desc">HU-10 a HU-12. Incidentes, agrupación automática por proximidad (150m), vistas de estadísticas.</div>
+            <div class="sql-tags"><span>incidentes</span><span>clustering</span><span>estadísticas</span></div>
+            <a href="sql/script_sprint3.sql" download class="sql-dl-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar SQL
+            </a>
+          </div>
+        </div>
+
+        <div class="sql-card">
+          <div class="sql-card-header sql-header-green">
+            <div class="sql-sprint-badge">Sprint 4</div>
+            <div class="sql-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            </div>
+          </div>
+          <div class="sql-card-body">
+            <div class="sql-title">script_sprint4.sql</div>
+            <div class="sql-desc">HU-14 a HU-21. Auditoría completa, solicitudes de eliminación, zonas de riesgo, exportación admin.</div>
+            <div class="sql-tags"><span>auditoría</span><span>zonas_riesgo</span><span>exportación</span></div>
+            <a href="sql/script_sprint4.sql" download class="sql-dl-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Descargar SQL
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DIAGRAMA ER -->
+  <section class="section section-dark" id="diagrama">
+    <div class="section-inner">
+      <div class="section-label">Diagrama entidad-relación</div>
+      <h2 class="section-title">Diagrama ER</h2>
+      <p class="section-sub">Relaciones entre las 16 tablas del sistema. Las líneas indican foreign keys.</p>
+
+      <div class="er-controls">
+        <button class="er-btn" id="btn-zoom-in">＋ Zoom</button>
+        <button class="er-btn" id="btn-zoom-out">－ Zoom</button>
+        <button class="er-btn" id="btn-reset">↺ Reset</button>
+        <span class="er-hint">También puedes hacer scroll sobre el diagrama</span>
+      </div>
+
+      <div class="er-viewport" id="er-viewport">
+        <div class="er-canvas" id="er-canvas">
+
+          <!-- SVG de relaciones (se dibuja desde JS) -->
+          <svg class="er-svg" id="er-svg" width="1400" height="960"></svg>
+
+          <!-- TABLAS -->
+
+          <!-- usuarios (central) -->
+          <div class="er-table" id="t-usuarios" style="left:560px;top:380px;">
+            <div class="er-table-header er-blue">
+              <span class="er-table-icon">👤</span>
+              <span class="er-table-name">usuarios</span>
+            </div>
+            <div class="er-table-body">
+              <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+              <div class="er-col">username <span class="er-type">varchar(50)</span></div>
+              <div class="er-col">correo <span class="er-type">varchar(150)</span></div>
+              <div class="er-col">rol <span class="er-type">usuario|admin</span></div>
+              <div class="er-col">estado <span class="er-type">activo|bloqueado…</span></div>
+              <div class="er-col">auth_provider <span class="er-type">local|google</span></div>
+              <div class="er-col">fcm_token <span class="er-type">text</span></div>
+            </div>
+          </div>
+
+          <!-- reportes -->
+          <div class="er-table" id="t-reportes" style="left:240px;top:340px;">
+            <div class="er-table-header er-indigo">
+              <span class="er-table-icon">📋</span>
+              <span class="er-table-name">reportes</span>
+            </div>
+            <div class="er-table-body">
+              <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+              <div class="er-col er-fk">🔗 usuario_id <span class="er-type">uuid FK</span></div>
+              <div class="er-col er-fk">🔗 zona_id <span class="er-type">int FK</span></div>
+              <div class="er-col er-fk">🔗 incidente_id <span class="er-type">uuid FK</span></div>
+              <div class="er-col er-fk">🔗 corregimiento_id <span class="er-type">int FK</span></div>
+              <div class="er-col er-fk">🔗 vereda_id <span class="er-type">int FK</span></div>
+              <div class="er-col">tipo_hurto <span class="er-type">atraco|…</span></div>
+              <div class="er-col">estado <span class="er-type">activo|oculto…</span></div>
+            </div>
+          </div>
+
+          <!-- zonas -->
+          <div class="er-table" id="t-zonas" style="left:20px;top:100px;">
+            <div class="er-table-header er-green">
+              <span class="er-table-icon">🗺️</span>
+              <span class="er-table-name">zonas</span>
+            </div>
+            <div class="er-table-body">
+              <div class="er-col er-pk">🔑 id <span class="er-type">serial PK</span></div>
+              <div class="er-col">barrio <span class="er-type">varchar(80)</span></div>
+              <div class="er-col">comuna <span class="er-type">int 1–12</span></div>
+              <div class="er-col">geom <span class="er-type">MultiPolygon</span></div>
+            </div>
+          </div>
+
+          <!-- corregimientos -->
+          <div class="er-table" id="t-corregimientos" style="left:20px;top:340px;">
+            <div class="er-table-header er-green">
+              <span class="er-table-icon">🌄</span>
+              <span class="er-table-name">corregimientos</span>
+            </div>
+            <div class="er-table-body">
+              <div class="er-col er-pk">🔑 id <span class="er-type">serial PK</span></div>
+              <div class="er-col">nombre <span class="er-type">varchar(80)</span></div>
+              <div class="er-col">geom <span class="er-type">MultiPolygon</span></div>
+            </div>
+          </div>
+
+          <!-- veredas -->
+          <div class="er-table" id="t-veredas" style="left:20px;top:530px;">
+            <div class="er-table-header er-green">
+              <span class="er-table-icon">🏘️</span>
+              <span class="er-table-name">veredas</span>
+            </div>
+            <div class="er-table-body">
+              <div class="er-col er-pk">🔑 id <span class="er-type">serial PK</span></div>
+              <div class="er-col er-fk">🔗 corregimiento_id <span class="er-type">int FK</span></div>
+              <div class="er-col">nombre <span class="er-type">varchar(80)</span></div>
+              <div class="er-col">es_cabecera <span class="er-type">boolean</span></div>
+            </div>
+          </div>
+
+          <!-- secciones_dane -->
+          <div class="er-table" id="t-secciones" style="left:20px;top:720px;">
+            <div class="er-table-header er-green">
+              <span class="er-table-icon">📐</span>
+              <span class="er-table-name">secciones_dane</span>
+            </div>
+            <div class="er-table-body">
+              <div class="er-col er-pk">🔑 id <span class="er-type">serial PK</span></div>
+              <div class="er-col">secu_ccdgo <span class="er-type">varchar(10)</span></div>
+              <div class="er-col">comuna <span class="er-type">int</span></div>
+              <div class="er-col">geom <span class="er-type">MultiPolygon</span></div>
+            </div>
+          </div>
+
+          <!-- incidentes -->
+          <div class="er-table" id="t-incidentes" style="left:240px;top:680px;">
+            <div class="er-table-header er-orange">
+              <span class="er-table-icon">⚠️</span>
+              <span class="er-table-name">incidentes</span>
+            </div>
+            <div class="er-table-body">
+              <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+              <div class="er-col er-fk">🔗 reporte_principal_id <span class="er-type">uuid FK</span></div>
+              <div class="er-col er-fk">🔗 zona_id <span class="er-type">int FK</span></div>
+              <div class="er-col er-fk">🔗 corregimiento_id <span class="er-type">int FK</span></div>
+              <div class="er-col er-fk">🔗 vereda_id <span class="er-type">int FK</span></div>
+              <div class="er-col">tipo_hurto <span class="er-type">varchar(30)</span></div>
+              <div class="er-col">cantidad_reportes <span class="er-type">int</span></div>
+            </div>
+          </div>
+
+          <!-- alertas -->
+          <div class="er-table" id="t-alertas" style="left:870px;top:160px;">
+            <div class="er-table-header er-yellow">
+              <span class="er-table-icon">🔔</span>
+              <span class="er-table-name">alertas</span>
+            </div>
+            <div class="er-table-body">
+              <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+              <div class="er-col er-fk">🔗 usuario_id <span class="er-type">uuid FK</span></div>
+              <div class="er-col er-fk">🔗 reporte_id <span class="er-type">uuid FK</span></div>
+              <div class="er-col">distancia_metros <span class="er-type">numeric</span></div>
+              <div class="er-col">leida <span class="er-type">boolean</span></div>
+            </div>
+          </div>
+
+          <!-- configuracion_alertas -->
+          <div class="er-table" id="t-config-alertas" style="left:870px;top:380px;">
+            <div class="er-table-header er-yellow">
+              <span class="er-table-icon">⚙️</span>
+              <span class="er-table-name">configuracion_alertas</span>
+            </div>
+            <div class="er-table-body">
+              <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+              <div class="er-col er-fk">🔗 usuario_id <span class="er-type">uuid FK UNIQUE</span></div>
+              <div class="er-col">radio_metros <span class="er-type">int 100–5000</span></div>
+              <div class="er-col">activo <span class="er-type">boolean</span></div>
+            </div>
+          </div>
+
+          <!-- password_resets -->
+          <div class="er-table" id="t-pw-resets" style="left:870px;top:560px;">
+            <div class="er-table-header er-red">
+              <span class="er-table-icon">🔐</span>
+              <span class="er-table-name">password_resets</span>
+            </div>
+            <div class="er-table-body">
+              <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+              <div class="er-col er-fk">🔗 usuario_id <span class="er-type">uuid FK</span></div>
+              <div class="er-col">token <span class="er-type">text</span></div>
+              <div class="er-col">expiration <span class="er-type">timestamp</span></div>
+              <div class="er-col">usado <span class="er-type">boolean</span></div>
+            </div>
+          </div>
+
+          <!-- auditoria_reportes -->
+          <div class="er-table" id="t-audit-rep" style="left:1130px;top:100px;">
+            <div class="er-table-header er-gray">
+              <span class="er-table-icon">📝</span>
+              <span class="er-table-name">auditoria_reportes</span>
+            </div>
+            <div class="er-table-body">
+              <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+              <div class="er-col er-fk">🔗 admin_id <span class="er-type">uuid FK</span></div>
+              <div class="er-col er-fk">🔗 reporte_id <span class="er-type">uuid FK</span></div>
+              <div class="er-col">accion <span class="er-type">ocultar|eliminar…</span></div>
+            </div>
+          </div>
+
+          <!-- auditoria_edicion_reportes -->
+          <div class="er-table" id="t-audit-edit" style="left:1130px;top:330px;">
+            <div class="er-table-header er-gray">
+              <span class="er-table-icon">✏️</span>
+              <span class="er-table-name">auditoria_edicion_reportes</span>
+            </div>
+            <div class="er-table-body">
+              <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+              <div class="er-col er-fk">🔗 admin_id <span class="er-type">uuid FK</span></div>
+              <div class="er-col er-fk">🔗 reporte_id <span class="er-type">uuid FK</span></div>
+              <div class="er-col">campos_modificados <span class="er-type">text[]</span></div>
+              <div class="er-col">valores_anteriores <span class="er-type">jsonb</span></div>
+            </div>
+          </div>
+
+          <!-- auditoria_usuarios -->
+          <div class="er-table" id="t-audit-usr" style="left:1130px;top:560px;">
+            <div class="er-table-header er-gray">
+              <span class="er-table-icon">🛡️</span>
+              <span class="er-table-name">auditoria_usuarios</span>
+            </div>
+            <div class="er-table-body">
+              <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+              <div class="er-col er-fk">🔗 admin_id <span class="er-type">uuid FK</span></div>
+              <div class="er-col er-fk">🔗 usuario_id <span class="er-type">uuid FK</span></div>
+              <div class="er-col">accion <span class="er-type">bloquear|eliminar…</span></div>
+            </div>
+          </div>
+
+          <!-- zonas_riesgo -->
+          <div class="er-table" id="t-zonas-riesgo" style="left:560px;top:740px;">
+            <div class="er-table-header er-red">
+              <span class="er-table-icon">🚨</span>
+              <span class="er-table-name">zonas_riesgo</span>
+            </div>
+            <div class="er-table-body">
+              <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+              <div class="er-col">latitud_centro <span class="er-type">numeric(9,6)</span></div>
+              <div class="er-col">longitud_centro <span class="er-type">numeric(9,6)</span></div>
+              <div class="er-col">nivel_riesgo <span class="er-type">seguro|medio|alto…</span></div>
+              <div class="er-col">cantidad_reportes <span class="er-type">int</span></div>
+              <div class="er-col">radio <span class="er-type">int (metros)</span></div>
+            </div>
+          </div>
+
+          <!-- solicitudes_eliminacion -->
+          <div class="er-table" id="t-solicitudes" style="left:560px;top:100px;">
+            <div class="er-table-header er-orange">
+              <span class="er-table-icon">🗑️</span>
+              <span class="er-table-name">solicitudes_eliminacion</span>
+            </div>
+            <div class="er-table-body">
+              <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+              <div class="er-col er-fk">🔗 reporte_id <span class="er-type">uuid FK</span></div>
+              <div class="er-col er-fk">🔗 usuario_id <span class="er-type">uuid FK</span></div>
+              <div class="er-col er-fk">🔗 admin_id <span class="er-type">uuid FK null</span></div>
+              <div class="er-col">estado_solicitud <span class="er-type">pendiente|…</span></div>
+            </div>
+          </div>
+
+          <!-- aceptacion_terminos -->
+          <div class="er-table" id="t-terminos" style="left:870px;top:750px;">
+            <div class="er-table-header er-teal">
+              <span class="er-table-icon">📄</span>
+              <span class="er-table-name">aceptacion_terminos</span>
+            </div>
+            <div class="er-table-body">
+              <div class="er-col er-pk">🔑 id <span class="er-type">uuid PK</span></div>
+              <div class="er-col er-fk">🔗 usuario_id <span class="er-type">uuid FK</span></div>
+              <div class="er-col">version_terminos <span class="er-type">varchar(10)</span></div>
+              <div class="er-col">ip_origen <span class="er-type">varchar(45)</span></div>
+            </div>
+          </div>
+
+        </div><!-- /er-canvas -->
+      </div><!-- /er-viewport -->
+
+    </div>
+  </section>
+
+  <!-- TABLAS DETALLE -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="section-label">Referencia</div>
+      <h2 class="section-title">Funciones y triggers</h2>
+      <div class="fn-grid">
+
+        <div class="fn-card">
+          <div class="fn-name">asignar_zona_y_comuna()</div>
+          <div class="fn-type fn-trigger">TRIGGER · BEFORE INSERT OR UPDATE</div>
+          <div class="fn-desc">Asigna automáticamente <code>zona_id</code> y <code>comuna</code> a un reporte usando PostGIS. Primero cruza coordenadas con <code>secciones_dane</code>, luego busca por nombre exacto del barrio como fallback.</div>
+        </div>
+
+        <div class="fn-card">
+          <div class="fn-name">asignar_zona_automatica()</div>
+          <div class="fn-type fn-trigger">TRIGGER · BEFORE INSERT OR UPDATE · WHEN zona_id IS NULL</div>
+          <div class="fn-desc">Fallback final: asigna zona por similitud usando Levenshtein sobre el nombre del barrio ingresado.</div>
+        </div>
+
+        <div class="fn-card">
+          <div class="fn-name">asignar_o_crear_incidente()</div>
+          <div class="fn-type fn-trigger">TRIGGER · AFTER INSERT</div>
+          <div class="fn-desc">Agrupa reportes en incidentes si hay otro reporte del mismo tipo/fecha/franja en un radio de 150m. Si no existe, crea un incidente nuevo. Actualiza el centroide promediando coordenadas.</div>
+        </div>
+
+        <div class="fn-card">
+          <div class="fn-name">get_zona_por_coordenadas(lat, lng)</div>
+          <div class="fn-type fn-rpc">RPC · Función SQL</div>
+          <div class="fn-desc">Dado un punto geográfico, retorna la <code>comuna</code> y el arreglo de <code>barrios</code> contenidos en esa sección censal DANE.</div>
+        </div>
+
+        <div class="fn-card">
+          <div class="fn-name">get_corregimiento_por_coordenadas(lat, lng)</div>
+          <div class="fn-type fn-rpc">RPC · Función SQL</div>
+          <div class="fn-desc">Retorna el corregimiento y sus veredas para coordenadas en zona rural, usando ST_Contains con los polígonos cargados.</div>
+        </div>
+
+        <div class="fn-card">
+          <div class="fn-name">calcular_nivel_riesgo(cantidad)</div>
+          <div class="fn-type fn-util">Función IMMUTABLE</div>
+          <div class="fn-desc">Retorna el nivel de riesgo según cantidad de reportes: ≤3 seguro · ≤7 medio · ≤10 alto · &gt;10 peligroso. Usada en las vistas del dashboard.</div>
+        </div>
+
+        <div class="fn-card">
+          <div class="fn-name">eliminar_cuenta_usuario(p_usuario_id)</div>
+          <div class="fn-type fn-util">Función PL/pgSQL</div>
+          <div class="fn-desc">Soft delete con anonimización: cambia estado a <code>eliminado</code>, sobrescribe username/correo, borra tokens y configuración de alertas. No elimina reportes asociados.</div>
+        </div>
+
+        <div class="fn-card">
+          <div class="fn-name">buscar_barrio_similar(texto)</div>
+          <div class="fn-type fn-rpc">RPC · Función SQL</div>
+          <div class="fn-desc">Retorna los 5 barrios más parecidos al texto ingresado usando distancia Levenshtein + unaccent. Sirve para el autocompletado y el trigger de zona automática.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="nav-logo-circle" style="width:32px;height:32px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <span class="nav-name" style="font-size:16px;">Civic<span class="nav-name-accent">Track</span><span class="nav-name-io">IO</span></span>
+      </div>
+      <p class="footer-copy">Sistema de reporte ciudadano de hurtos · Pasto, Nariño · 2026</p>
+    </div>
+  </footer>
+
+  <script src="db.js"></script>
+</body>
+</html>
