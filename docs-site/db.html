@@ -149,6 +149,98 @@
     </div>
   </section>
 
+  <!-- DIAGRAMAS BD POR SPRINT -->
+  <section class="section section-dark" id="diagrama">
+    <div class="section-inner">
+      <div class="section-label">Diagramas BD</div>
+      <h2 class="section-title">Evolución del esquema por sprint</h2>
+      <p class="section-sub">Cada sprint añadió nuevas tablas y relaciones. Los diagramas muestran las entidades acumuladas hasta ese sprint.</p>
+
+      <div class="uml-tabs">
+        <button class="uml-tab active" data-sprint="1">Sprint 1</button>
+        <button class="uml-tab" data-sprint="2">Sprint 2</button>
+        <button class="uml-tab" data-sprint="3">Sprint 3</button>
+        <button class="uml-tab" data-sprint="4">Sprint 4</button>
+      </div>
+
+      <!-- Sprint 1 -->
+      <div class="uml-panel active" id="uml-1">
+        <div class="uml-legend"><span class="uml-leg uml-leg-new">● Nuevo en este sprint</span></div>
+        <div class="er-controls">
+          <button class="er-btn uml-zoom-in">＋</button>
+          <button class="er-btn uml-zoom-out">－</button>
+          <button class="er-btn uml-reset">↺</button>
+          <span class="er-hint">Arrastra o usa scroll para navegar</span>
+        </div>
+        <div class="er-viewport">
+          <div class="er-canvas uml-img-canvas" id="canvas-1">
+            <img src="diagramas-uml/diagrama_sprint1.png" alt="Diagrama BD Sprint 1" class="uml-diagram-img" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Sprint 2 -->
+      <div class="uml-panel" id="uml-2">
+        <div class="uml-legend">
+          <span class="uml-leg uml-leg-new">● Nuevo</span>
+          <span class="uml-leg uml-leg-mod">● Modificado</span>
+          <span class="uml-leg uml-leg-existing">● Existente</span>
+        </div>
+        <div class="er-controls">
+          <button class="er-btn uml-zoom-in">＋</button>
+          <button class="er-btn uml-zoom-out">－</button>
+          <button class="er-btn uml-reset">↺</button>
+          <span class="er-hint">Arrastra o usa scroll para navegar</span>
+        </div>
+        <div class="er-viewport">
+          <div class="er-canvas uml-img-canvas" id="canvas-2">
+            <img src="diagramas-uml/diagrama_sprint2.png" alt="Diagrama BD Sprint 2" class="uml-diagram-img" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Sprint 3 -->
+      <div class="uml-panel" id="uml-3">
+        <div class="uml-legend">
+          <span class="uml-leg uml-leg-new">● Nuevo</span>
+          <span class="uml-leg uml-leg-mod">● Modificado</span>
+          <span class="uml-leg uml-leg-existing">● Existente</span>
+        </div>
+        <div class="er-controls">
+          <button class="er-btn uml-zoom-in">＋</button>
+          <button class="er-btn uml-zoom-out">－</button>
+          <button class="er-btn uml-reset">↺</button>
+          <span class="er-hint">Arrastra o usa scroll para navegar</span>
+        </div>
+        <div class="er-viewport">
+          <div class="er-canvas uml-img-canvas" id="canvas-3">
+            <img src="diagramas-uml/diagrama_sprint3.png" alt="Diagrama BD Sprint 3" class="uml-diagram-img" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Sprint 4 -->
+      <div class="uml-panel" id="uml-4">
+        <div class="uml-legend">
+          <span class="uml-leg uml-leg-new">● Nuevo</span>
+          <span class="uml-leg uml-leg-existing">● Existente</span>
+        </div>
+        <div class="er-controls">
+          <button class="er-btn uml-zoom-in">＋</button>
+          <button class="er-btn uml-zoom-out">－</button>
+          <button class="er-btn uml-reset">↺</button>
+          <span class="er-hint">Arrastra o usa scroll para navegar</span>
+        </div>
+        <div class="er-viewport">
+          <div class="er-canvas uml-img-canvas" id="canvas-4">
+            <img src="diagramas-uml/diagrama_sprint4.png" alt="Diagrama BD Sprint 4" class="uml-diagram-img" />
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- DIAGRAMA ER -->
   <section class="section" id="diagrama-er">
     <div class="section-inner">
