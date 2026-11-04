@@ -257,10 +257,9 @@ function drawSprint(n) {
   drawLines(`svg-${n}`, SPRINT_RELATIONS[n] || []);
 }
 
-// Draw sprint 1 on load (it's the active tab)
+// Draw sprint 1 on load (it's the active tab) — SVG drawing removed, now image-based
 window.addEventListener('load', () => {
-  setTimeout(() => drawSprint(1), 120);
-  setTimeout(() => drawFullDiagram(), 150);
+  // no-op: images load natively
 });
 
 // ── Full diagram ──
