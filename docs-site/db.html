@@ -34,15 +34,15 @@
     <div class="db-hero-inner">
       <div class="hero-badge">PostgreSQL 17 · PostGIS · Supabase</div>
       <h1 class="db-hero-title">Esquema de base de datos</h1>
-      <p class="db-hero-sub">16 tablas, funciones RPC geoespaciales, triggers automáticos y vistas de análisis.</p>
+      <p class="db-hero-sub">16 tablas, funciones RPC geoespaciales, triggers automáticos y diagramas de arquitectura por sprint.</p>
       <div class="db-hero-stats">
         <div class="db-stat"><span class="db-stat-num">16</span><span class="db-stat-label">Tablas</span></div>
         <div class="db-stat-div"></div>
+        <div class="db-stat"><span class="db-stat-num">5</span><span class="db-stat-label">Scripts SQL</span></div>
+        <div class="db-stat-div"></div>
+        <div class="db-stat"><span class="db-stat-num">4</span><span class="db-stat-label">Diagramas BD</span></div>
+        <div class="db-stat-div"></div>
         <div class="db-stat"><span class="db-stat-num">6</span><span class="db-stat-label">Funciones</span></div>
-        <div class="db-stat-div"></div>
-        <div class="db-stat"><span class="db-stat-num">3</span><span class="db-stat-label">Triggers</span></div>
-        <div class="db-stat-div"></div>
-        <div class="db-stat"><span class="db-stat-num">8</span><span class="db-stat-label">Vistas</span></div>
       </div>
     </div>
   </section>
@@ -161,6 +161,8 @@
         <button class="uml-tab" data-sprint="2">Sprint 2</button>
         <button class="uml-tab" data-sprint="3">Sprint 3</button>
         <button class="uml-tab" data-sprint="4">Sprint 4</button>
+        <a href="db.html#diagrama-er" class="uml-tab uml-tab-link">Sprint total</a>
+        <a href="db.html#diagrama-er" class="uml-tab uml-tab-link">Diagrama ER</a>
       </div>
 
       <!-- Sprint 1 -->
@@ -246,80 +248,84 @@
     <div class="section-inner">
       <div class="section-label">Entidad-Relación</div>
       <h2 class="section-title">Diagrama entidad-relación</h2>
-      <p class="section-sub">Esquema completo de relaciones del sistema — generado desde el script de producción.</p>
-      <div class="er-controls">
-        <button class="er-btn" id="er-zoom-in">＋</button>
-        <button class="er-btn" id="er-zoom-out">－</button>
-        <button class="er-btn" id="er-reset">↺</button>
-        <span class="er-hint">Arrastra o usa scroll para navegar</span>
+      <p class="section-sub">Modelo ER en notación Chen dividido por módulos — generado desde el script de producción.</p>
+
+      <div class="uml-tabs">
+        <button class="er-mod-tab active" data-mod="1">Módulo 1 · Geografía</button>
+        <button class="er-mod-tab" data-mod="2">Módulo 2 · Usuarios</button>
+        <button class="er-mod-tab" data-mod="3">Módulo 3 · Reportes</button>
+        <button class="er-mod-tab" data-mod="4">Módulo 4 · Auditoría</button>
       </div>
-      <div class="er-viewport" id="er-viewport">
-        <div class="er-canvas uml-img-canvas" id="er-canvas">
-          <div class="er-placeholder">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.3"><rect x="2" y="2" width="8" height="6" rx="1"/><rect x="14" y="2" width="8" height="6" rx="1"/><rect x="8" y="10" width="8" height="6" rx="1"/><rect x="2" y="18" width="8" height="4" rx="1"/><rect x="14" y="18" width="8" height="4" rx="1"/><line x1="6" y1="8" x2="12" y2="10"/><line x1="18" y1="8" x2="12" y2="10"/><line x1="6" y1="18" x2="12" y2="16"/><line x1="18" y1="18" x2="12" y2="16"/></svg>
-            <p>Diagrama ER próximamente</p>
-            <a href="#" class="er-placeholder-btn er-placeholder-btn-disabled" aria-disabled="true">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-              Ver diagrama completo
-            </a>
-          </div>
+
+      <!-- Módulo 1 -->
+      <div class="uml-panel active" id="er-mod-1">
+        <div class="uml-legend"><span class="uml-leg" style="color:#34D399;">● Geografía · Zonas, corregimientos, veredas</span></div>
+        <div class="er-controls">
+          <button class="er-btn er-mod-zoom-in uml-zoom-in">＋</button>
+          <button class="er-btn er-mod-zoom-out uml-zoom-out">－</button>
+          <button class="er-btn er-mod-reset uml-reset">↺</button>
+          <span class="er-hint">Arrastra o usa scroll para navegar</span>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DIAGRAMAS UML -->
-  <section class="section section-dark" id="diagramas-uml">
-    <div class="section-inner">
-      <div class="section-label">Diagramas UML</div>
-      <h2 class="section-title">Diagramas UML del sistema</h2>
-      <p class="section-sub">Diagramas de casos de uso, secuencia, clases y actividades del sistema. Se irán añadiendo a medida que se completen.</p>
-
-      <div class="uml-coming-grid">
-        <div class="uml-coming-card uml-coming-placeholder">
-          <div class="uml-coming-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/><circle cx="5" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><line x1="7" y1="5" x2="17" y2="5"/></svg>
+        <div class="er-viewport">
+          <div class="er-canvas uml-img-canvas" id="er-canvas-1">
+            <img src="diagramas-er/CivicTrackIO_Modelo_ER_Chen-Módulo 1 — Geografía.drawio.png" alt="ER Módulo 1 — Geografía" class="uml-diagram-img" />
           </div>
-          <div class="uml-coming-title">Casos de uso</div>
-          <div class="uml-coming-desc">Diagrama de actores e interacciones del sistema.</div>
-          <span class="uml-coming-badge">Próximamente</span>
-        </div>
-
-        <div class="uml-coming-card uml-coming-placeholder">
-          <div class="uml-coming-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="4" y1="4" x2="4" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/><line x1="20" y1="4" x2="20" y2="20"/><path d="M4 7h8"/><path d="M4 11h8"/><path d="M12 15h8"/></svg>
-          </div>
-          <div class="uml-coming-title">Secuencia</div>
-          <div class="uml-coming-desc">Flujo de mensajes entre componentes del sistema.</div>
-          <span class="uml-coming-badge">Próximamente</span>
-        </div>
-
-        <div class="uml-coming-card uml-coming-placeholder">
-          <div class="uml-coming-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="8" height="5" rx="1"/><rect x="14" y="3" width="8" height="5" rx="1"/><rect x="8" y="14" width="8" height="5" rx="1"/><line x1="6" y1="8" x2="12" y2="14"/><line x1="18" y1="8" x2="12" y2="14"/></svg>
-          </div>
-          <div class="uml-coming-title">Clases</div>
-          <div class="uml-coming-desc">Estructura de clases y relaciones del backend.</div>
-          <span class="uml-coming-badge">Próximamente</span>
-        </div>
-
-        <div class="uml-coming-card uml-coming-placeholder">
-          <div class="uml-coming-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M6 6l2.5 2.5"/><path d="M15.5 15.5L18 18"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M6 18l2.5-2.5"/><path d="M15.5 8.5L18 6"/><circle cx="12" cy="12" r="3"/></svg>
-          </div>
-          <div class="uml-coming-title">Actividades</div>
-          <div class="uml-coming-desc">Flujos de procesos y decisiones del sistema.</div>
-          <span class="uml-coming-badge">Próximamente</span>
         </div>
       </div>
+
+      <!-- Módulo 2 -->
+      <div class="uml-panel" id="er-mod-2">
+        <div class="uml-legend"><span class="uml-leg" style="color:#60A5FA;">● Usuarios y cuenta</span></div>
+        <div class="er-controls">
+          <button class="er-btn er-mod-zoom-in uml-zoom-in">＋</button>
+          <button class="er-btn er-mod-zoom-out uml-zoom-out">－</button>
+          <button class="er-btn er-mod-reset uml-reset">↺</button>
+          <span class="er-hint">Arrastra o usa scroll para navegar</span>
+        </div>
+        <div class="er-viewport">
+          <div class="er-canvas uml-img-canvas" id="er-canvas-2">
+            <img src="diagramas-er/CivicTrackIO_Modelo_ER_Chen-Módulo 2 — Usuarios y cuenta.drawio.png" alt="ER Módulo 2 — Usuarios y cuenta" class="uml-diagram-img" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Módulo 3 -->
+      <div class="uml-panel" id="er-mod-3">
+        <div class="uml-legend"><span class="uml-leg" style="color:#FB923C;">● Reportes e incidentes</span></div>
+        <div class="er-controls">
+          <button class="er-btn er-mod-zoom-in uml-zoom-in">＋</button>
+          <button class="er-btn er-mod-zoom-out uml-zoom-out">－</button>
+          <button class="er-btn er-mod-reset uml-reset">↺</button>
+          <span class="er-hint">Arrastra o usa scroll para navegar</span>
+        </div>
+        <div class="er-viewport">
+          <div class="er-canvas uml-img-canvas" id="er-canvas-3">
+            <img src="diagramas-er/CivicTrackIO_Modelo_ER_Chen-Módulo 3 — Reportes e incidentes.drawio.png" alt="ER Módulo 3 — Reportes e incidentes" class="uml-diagram-img" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Módulo 4 -->
+      <div class="uml-panel" id="er-mod-4">
+        <div class="uml-legend"><span class="uml-leg" style="color:#94A3B8;">● Auditoría y solicitudes</span></div>
+        <div class="er-controls">
+          <button class="er-btn er-mod-zoom-in uml-zoom-in">＋</button>
+          <button class="er-btn er-mod-zoom-out uml-zoom-out">－</button>
+          <button class="er-btn er-mod-reset uml-reset">↺</button>
+          <span class="er-hint">Arrastra o usa scroll para navegar</span>
+        </div>
+        <div class="er-viewport">
+          <div class="er-canvas uml-img-canvas" id="er-canvas-4">
+            <img src="diagramas-er/CivicTrackIO_Modelo_ER_Chen-Módulo 4 — Auditoría y solicitudes.drawio.png" alt="ER Módulo 4 — Auditoría y solicitudes" class="uml-diagram-img" />
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
   <!-- kept for JS compatibility — hidden duplicate panels removed -->
-  <div style="display:none">
-        <div class="uml-legend">
-          <span class="uml-leg uml-leg-new">● Nuevo en este sprint</span>
-        </div>
+  <div style="display:none"></div>
         <div class="er-controls">
           <button class="er-btn uml-zoom-in">＋</button>
           <button class="er-btn uml-zoom-out">－</button>

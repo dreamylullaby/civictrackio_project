@@ -284,3 +284,32 @@
   background: rgba(148,163,184,0.1); color: var(--text-muted);
   border: 1px solid var(--border); padding: 2px 9px; border-radius: 99px;
 }
+
+/* ── Tab-link buttons (Sprint total / ER) ── */
+.uml-tab-link {
+  text-decoration: none;
+  background: var(--bg-card);
+  border: 1px solid rgba(79,70,229,0.4);
+  color: #a5b4fc;
+  font-size: 13px; font-weight: 600;
+  padding: 8px 20px; border-radius: 8px; cursor: pointer;
+  transition: all 0.2s; font-family: var(--font-title);
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.uml-tab-link:hover {
+  background: rgba(79,70,229,0.2);
+  border-color: #6d5fff;
+  color: #c7d2fe;
+}
+
+/* ── ER Module Tabs (same style as uml-tab) ── */
+.er-mod-tab {
+  background: var(--bg-card); border: 1px solid var(--border);
+  color: var(--text-sub); font-size: 13px; font-weight: 600;
+  padding: 8px 20px; border-radius: 8px; cursor: pointer;
+  transition: all 0.2s; font-family: var(--font-title);
+}
+.er-mod-tab:hover { color: #fff; border-color: #4F46E5; }
+.er-mod-tab.active {
+  background: #4F46E5; border-color: #4F46E5; color: #fff;
+}
