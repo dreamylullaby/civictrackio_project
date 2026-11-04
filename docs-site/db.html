@@ -57,16 +57,16 @@
 
         <div class="sql-card">
           <div class="sql-card-header sql-header-blue">
-            <div class="sql-sprint-badge">Sprint base</div>
+            <div class="sql-sprint-badge">Consolidado</div>
             <div class="sql-icon">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
             </div>
           </div>
           <div class="sql-card-body">
-            <div class="sql-title">script_saferoute_bd.sql</div>
-            <div class="sql-desc">Script consolidado completo. Todas las tablas, índices, funciones, triggers y vistas en un solo archivo.</div>
-            <div class="sql-tags"><span>16 tablas</span><span>Completo</span><span>Producción</span></div>
-            <a href="sql/script_saferoute_bd.sql" download class="sql-dl-btn">
+            <div class="sql-title">civictrackio_schema.sql</div>
+            <div class="sql-desc">Script consolidado completo generado desde backup Supabase. Todas las tablas, índices, funciones, triggers, vistas y políticas RLS.</div>
+            <div class="sql-tags"><span>17 tablas</span><span>Producción</span><span>RLS</span></div>
+            <a href="sql/civictrackio_schema.sql" download class="sql-dl-btn">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               Descargar SQL
             </a>
@@ -149,14 +149,13 @@
     </div>
   </section>
 
-  <!-- DIAGRAMAS UML POR SPRINT -->
+  <!-- DIAGRAMAS BD POR SPRINT -->
   <section class="section section-dark" id="diagrama">
     <div class="section-inner">
-      <div class="section-label">Diagramas UML</div>
+      <div class="section-label">Diagramas BD</div>
       <h2 class="section-title">Evolución del esquema por sprint</h2>
       <p class="section-sub">Cada sprint añadió nuevas tablas y relaciones. Los diagramas muestran las entidades acumuladas hasta ese sprint.</p>
 
-      <!-- Tabs -->
       <div class="uml-tabs">
         <button class="uml-tab active" data-sprint="1">Sprint 1</button>
         <button class="uml-tab" data-sprint="2">Sprint 2</button>
@@ -164,8 +163,160 @@
         <button class="uml-tab" data-sprint="4">Sprint 4</button>
       </div>
 
-      <!-- Sprint 1: zonas, usuarios, reportes -->
+      <!-- Sprint 1 -->
       <div class="uml-panel active" id="uml-1">
+        <div class="uml-legend"><span class="uml-leg uml-leg-new">● Nuevo en este sprint</span></div>
+        <div class="er-controls">
+          <button class="er-btn uml-zoom-in">＋</button>
+          <button class="er-btn uml-zoom-out">－</button>
+          <button class="er-btn uml-reset">↺</button>
+          <span class="er-hint">Arrastra o usa scroll para navegar</span>
+        </div>
+        <div class="er-viewport">
+          <div class="er-canvas uml-img-canvas" id="canvas-1">
+            <img src="diagramas-uml/diagrama_sprint1.png" alt="Diagrama BD Sprint 1" class="uml-diagram-img" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Sprint 2 -->
+      <div class="uml-panel" id="uml-2">
+        <div class="uml-legend">
+          <span class="uml-leg uml-leg-new">● Nuevo</span>
+          <span class="uml-leg uml-leg-mod">● Modificado</span>
+          <span class="uml-leg uml-leg-existing">● Existente</span>
+        </div>
+        <div class="er-controls">
+          <button class="er-btn uml-zoom-in">＋</button>
+          <button class="er-btn uml-zoom-out">－</button>
+          <button class="er-btn uml-reset">↺</button>
+          <span class="er-hint">Arrastra o usa scroll para navegar</span>
+        </div>
+        <div class="er-viewport">
+          <div class="er-canvas uml-img-canvas" id="canvas-2">
+            <img src="diagramas-uml/diagrama_sprint2.png" alt="Diagrama BD Sprint 2" class="uml-diagram-img" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Sprint 3 -->
+      <div class="uml-panel" id="uml-3">
+        <div class="uml-legend">
+          <span class="uml-leg uml-leg-new">● Nuevo</span>
+          <span class="uml-leg uml-leg-mod">● Modificado</span>
+          <span class="uml-leg uml-leg-existing">● Existente</span>
+        </div>
+        <div class="er-controls">
+          <button class="er-btn uml-zoom-in">＋</button>
+          <button class="er-btn uml-zoom-out">－</button>
+          <button class="er-btn uml-reset">↺</button>
+          <span class="er-hint">Arrastra o usa scroll para navegar</span>
+        </div>
+        <div class="er-viewport">
+          <div class="er-canvas uml-img-canvas" id="canvas-3">
+            <img src="diagramas-uml/diagrama_sprint3.png" alt="Diagrama BD Sprint 3" class="uml-diagram-img" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Sprint 4 -->
+      <div class="uml-panel" id="uml-4">
+        <div class="uml-legend">
+          <span class="uml-leg uml-leg-new">● Nuevo</span>
+          <span class="uml-leg uml-leg-existing">● Existente</span>
+        </div>
+        <div class="er-controls">
+          <button class="er-btn uml-zoom-in">＋</button>
+          <button class="er-btn uml-zoom-out">－</button>
+          <button class="er-btn uml-reset">↺</button>
+          <span class="er-hint">Arrastra o usa scroll para navegar</span>
+        </div>
+        <div class="er-viewport">
+          <div class="er-canvas uml-img-canvas" id="canvas-4">
+            <img src="diagramas-uml/diagrama_sprint4.png" alt="Diagrama BD Sprint 4" class="uml-diagram-img" />
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DIAGRAMA ER -->
+  <section class="section" id="diagrama-er">
+    <div class="section-inner">
+      <div class="section-label">Entidad-Relación</div>
+      <h2 class="section-title">Diagrama entidad-relación</h2>
+      <p class="section-sub">Esquema completo de relaciones del sistema — generado desde el script de producción.</p>
+      <div class="er-controls">
+        <button class="er-btn" id="er-zoom-in">＋</button>
+        <button class="er-btn" id="er-zoom-out">－</button>
+        <button class="er-btn" id="er-reset">↺</button>
+        <span class="er-hint">Arrastra o usa scroll para navegar</span>
+      </div>
+      <div class="er-viewport" id="er-viewport">
+        <div class="er-canvas uml-img-canvas" id="er-canvas">
+          <div class="er-placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.3"><rect x="2" y="2" width="8" height="6" rx="1"/><rect x="14" y="2" width="8" height="6" rx="1"/><rect x="8" y="10" width="8" height="6" rx="1"/><rect x="2" y="18" width="8" height="4" rx="1"/><rect x="14" y="18" width="8" height="4" rx="1"/><line x1="6" y1="8" x2="12" y2="10"/><line x1="18" y1="8" x2="12" y2="10"/><line x1="6" y1="18" x2="12" y2="16"/><line x1="18" y1="18" x2="12" y2="16"/></svg>
+            <p>Diagrama ER próximamente</p>
+            <a href="#" class="er-placeholder-btn er-placeholder-btn-disabled" aria-disabled="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              Ver diagrama completo
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIAGRAMAS UML -->
+  <section class="section section-dark" id="diagramas-uml">
+    <div class="section-inner">
+      <div class="section-label">Diagramas UML</div>
+      <h2 class="section-title">Diagramas UML del sistema</h2>
+      <p class="section-sub">Diagramas de casos de uso, secuencia, clases y actividades del sistema. Se irán añadiendo a medida que se completen.</p>
+
+      <div class="uml-coming-grid">
+        <div class="uml-coming-card uml-coming-placeholder">
+          <div class="uml-coming-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/><circle cx="5" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><line x1="7" y1="5" x2="17" y2="5"/></svg>
+          </div>
+          <div class="uml-coming-title">Casos de uso</div>
+          <div class="uml-coming-desc">Diagrama de actores e interacciones del sistema.</div>
+          <span class="uml-coming-badge">Próximamente</span>
+        </div>
+
+        <div class="uml-coming-card uml-coming-placeholder">
+          <div class="uml-coming-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="4" y1="4" x2="4" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/><line x1="20" y1="4" x2="20" y2="20"/><path d="M4 7h8"/><path d="M4 11h8"/><path d="M12 15h8"/></svg>
+          </div>
+          <div class="uml-coming-title">Secuencia</div>
+          <div class="uml-coming-desc">Flujo de mensajes entre componentes del sistema.</div>
+          <span class="uml-coming-badge">Próximamente</span>
+        </div>
+
+        <div class="uml-coming-card uml-coming-placeholder">
+          <div class="uml-coming-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="8" height="5" rx="1"/><rect x="14" y="3" width="8" height="5" rx="1"/><rect x="8" y="14" width="8" height="5" rx="1"/><line x1="6" y1="8" x2="12" y2="14"/><line x1="18" y1="8" x2="12" y2="14"/></svg>
+          </div>
+          <div class="uml-coming-title">Clases</div>
+          <div class="uml-coming-desc">Estructura de clases y relaciones del backend.</div>
+          <span class="uml-coming-badge">Próximamente</span>
+        </div>
+
+        <div class="uml-coming-card uml-coming-placeholder">
+          <div class="uml-coming-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v4"/><path d="M12 18v4"/><path d="M6 6l2.5 2.5"/><path d="M15.5 15.5L18 18"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M6 18l2.5-2.5"/><path d="M15.5 8.5L18 6"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <div class="uml-coming-title">Actividades</div>
+          <div class="uml-coming-desc">Flujos de procesos y decisiones del sistema.</div>
+          <span class="uml-coming-badge">Próximamente</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- kept for JS compatibility — hidden duplicate panels removed -->
+  <div style="display:none">
         <div class="uml-legend">
           <span class="uml-leg uml-leg-new">● Nuevo en este sprint</span>
         </div>
@@ -531,10 +682,11 @@
       </div>
 
     </div>
-  </section>
+  </div><!-- /display:none -->
 
-  <!-- DIAGRAMA COMPLETO -->
-  <section class="section">
+  <!-- DIAGRAMA COMPLETO — oculto, reemplazado por imagen ER cuando esté disponible -->
+  <div style="display:none">
+  <section class="section"></section>
     <div class="section-inner">
       <div class="section-label">Diagrama completo</div>
       <h2 class="section-title">Todas las tablas — esquema final</h2>
@@ -792,6 +944,7 @@
       </div><!-- /er-viewport -->
     </div>
   </section>
+  </div><!-- /display:none diagrama completo -->
 
 <section class="section">
     <div class="section-inner">
