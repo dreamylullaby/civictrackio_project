@@ -1,0 +1,138 @@
+/* ── BPMN Page Styles ── */
+
+.bpmn-hero {
+  min-height: 38vh;
+  background: linear-gradient(160deg, #0f172a, #1a1a5c, #2d1b69);
+  display: flex; align-items: center; justify-content: center;
+  padding: 100px 24px 60px;
+  text-align: center;
+}
+.bpmn-hero-inner { max-width: 700px; }
+.bpmn-hero-title {
+  font-family: var(--font-title);
+  font-size: clamp(28px, 4vw, 46px);
+  font-weight: 800; color: #fff;
+  margin: 16px 0 14px;
+}
+.bpmn-hero-sub { font-size: 16px; color: rgba(255,255,255,0.7); margin-bottom: 36px; }
+.bpmn-hero-stats {
+  display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 14px; padding: 14px 20px;
+  backdrop-filter: blur(8px); gap: 0;
+  max-width: 380px; margin: 0 auto;
+}
+
+/* Featured card */
+.bpmn-featured { margin-bottom: 32px; }
+.bpmn-card-featured { max-width: 800px; }
+.bpmn-card-featured .bpmn-card-img-wrap { height: 320px; }
+
+/* Grid */
+.bpmn-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* Card */
+.bpmn-card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.bpmn-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+  border-color: rgba(99,102,241,0.5);
+}
+.bpmn-card-img-wrap {
+  position: relative; height: 180px; overflow: hidden;
+  background: #0d1424;
+}
+.bpmn-card-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: contain; object-position: center;
+  padding: 8px;
+  transition: transform 0.3s;
+}
+.bpmn-card:hover .bpmn-card-img-wrap img { transform: scale(1.04); }
+.bpmn-card-overlay {
+  position: absolute; inset: 0;
+  background: rgba(79,70,229,0.0);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.2s, background 0.2s;
+}
+.bpmn-card:hover .bpmn-card-overlay {
+  opacity: 1;
+  background: rgba(79,70,229,0.3);
+}
+.bpmn-card-info { padding: 14px 16px; }
+.bpmn-card-title {
+  font-family: var(--font-title); font-size: 14px; font-weight: 700;
+  color: #fff; margin-bottom: 4px;
+}
+.bpmn-card-desc { font-size: 12px; color: var(--text-sub); line-height: 1.5; }
+
+/* Lightbox */
+.bpmn-lightbox {
+  position: fixed; inset: 0; z-index: 1000;
+  display: none; align-items: center; justify-content: center;
+}
+.bpmn-lightbox.open { display: flex; }
+.bpmn-lightbox-backdrop {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.88); backdrop-filter: blur(6px);
+}
+.bpmn-lightbox-inner {
+  position: relative; z-index: 1;
+  max-width: min(90vw, 1100px); width: 100%;
+  background: #0f172a; border: 1px solid var(--border);
+  border-radius: 16px; padding: 24px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.lb-close {
+  position: absolute; top: 14px; right: 14px;
+  background: rgba(255,255,255,0.08); border: 1px solid var(--border);
+  color: var(--text-sub); border-radius: 8px;
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background 0.2s, color 0.2s;
+}
+.lb-close:hover { background: rgba(255,255,255,0.15); color: #fff; }
+.lb-title {
+  font-family: var(--font-title); font-size: 16px; font-weight: 700;
+  color: #fff; padding-right: 40px;
+}
+.lb-img-wrap {
+  background: #0d1424; border-radius: 10px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  max-height: 70vh;
+}
+.lb-img-wrap img {
+  max-width: 100%; max-height: 70vh;
+  object-fit: contain; display: block;
+}
+.lb-controls {
+  display: flex; align-items: center; justify-content: center; gap: 16px;
+}
+.lb-nav {
+  background: var(--bg-card); border: 1px solid var(--border);
+  color: var(--text-sub); border-radius: 8px;
+  width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background 0.2s, color 0.2s;
+}
+.lb-nav:hover { background: rgba(255,255,255,0.1); color: #fff; }
+.lb-counter { font-size: 13px; color: var(--text-muted); min-width: 60px; text-align: center; }
+
+@media (max-width: 768px) {
+  .bpmn-grid { grid-template-columns: 1fr 1fr; }
+  .bpmn-card-img-wrap { height: 130px; }
+  .bpmn-card-featured .bpmn-card-img-wrap { height: 200px; }
+}
+@media (max-width: 500px) {
+  .bpmn-grid { grid-template-columns: 1fr; }
+}

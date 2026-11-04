@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagramas BPMN · CivicTrackIO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="bpmn.css" />
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">
+        <div class="nav-logo-circle">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <span class="nav-name">Civic<span class="nav-name-accent">Track</span><span class="nav-name-io">IO</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">← Volver</a>
+        <a href="https://civictrackio.com" target="_blank" class="nav-btn">Dashboard →</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="bpmn-hero">
+    <div class="bpmn-hero-inner">
+      <div class="hero-badge">BPMN 2.0 · Procesos de negocio · CivicTrackIO</div>
+      <h1 class="bpmn-hero-title">Diagramas BPMN</h1>
+      <p class="bpmn-hero-sub">Modelado de los procesos de negocio del sistema — flujos de usuario, administrador y del sistema completo.</p>
+      <div class="bpmn-hero-stats">
+        <div class="db-stat"><span class="db-stat-num">12</span><span class="db-stat-label">Diagramas</span></div>
+        <div class="db-stat-div"></div>
+        <div class="db-stat"><span class="db-stat-num">2</span><span class="db-stat-label">Actores</span></div>
+        <div class="db-stat-div"></div>
+        <div class="db-stat"><span class="db-stat-num">1</span><span class="db-stat-label">Modelo total</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERÍA -->
+  <section class="section">
+    <div class="section-inner">
+
+      <!-- Modelo total -->
+      <div class="section-label">Modelo completo</div>
+      <h2 class="section-title">Proceso global del sistema</h2>
+      <p class="section-sub">Vista consolidada de todos los flujos del sistema CivicTrackIO.</p>
+      <div class="bpmn-featured">
+        <div class="bpmn-card bpmn-card-featured" data-img="diagramas-bpmn/modelo_civictrackio_total.png" data-title="Modelo total CivicTrackIO">
+          <div class="bpmn-card-img-wrap">
+            <img src="diagramas-bpmn/modelo_civictrackio_total.png" alt="Modelo total CivicTrackIO" loading="lazy" />
+            <div class="bpmn-card-overlay">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+          </div>
+          <div class="bpmn-card-info">
+            <div class="bpmn-card-title">Modelo total CivicTrackIO</div>
+            <div class="bpmn-card-desc">Vista general de todos los procesos y actores del sistema.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flujos de usuario -->
+      <div class="section-label" style="margin-top:48px;">Flujos de usuario</div>
+      <h2 class="section-title">Procesos del ciudadano</h2>
+      <p class="section-sub">Flujos que realiza el usuario final en la aplicación móvil.</p>
+      <div class="bpmn-grid">
+
+        <div class="bpmn-card" data-img="diagramas-bpmn/modelo_civictrackio_user__make_reports.png" data-title="Registro de reportes">
+          <div class="bpmn-card-img-wrap">
+            <img src="diagramas-bpmn/modelo_civictrackio_user__make_reports.png" alt="Registro de reportes" loading="lazy" />
+            <div class="bpmn-card-overlay">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+          </div>
+          <div class="bpmn-card-info">
+            <div class="bpmn-card-title">Registro de reportes</div>
+            <div class="bpmn-card-desc">Proceso de creación de un nuevo reporte de hurto.</div>
+          </div>
+        </div>
+
+        <div class="bpmn-card" data-img="diagramas-bpmn/modelo_civictrackio_user_reports.png" data-title="Gestión de reportes (usuario)">
+          <div class="bpmn-card-img-wrap">
+            <img src="diagramas-bpmn/modelo_civictrackio_user_reports.png" alt="Gestión de reportes usuario" loading="lazy" />
+            <div class="bpmn-card-overlay">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+          </div>
+          <div class="bpmn-card-info">
+            <div class="bpmn-card-title">Gestión de reportes</div>
+            <div class="bpmn-card-desc">Consulta y seguimiento de reportes propios del usuario.</div>
+          </div>
+        </div>
+
+        <div class="bpmn-card" data-img="diagramas-bpmn/modelo_civictrackio_filtros_map.png" data-title="Filtros del mapa">
+          <div class="bpmn-card-img-wrap">
+            <img src="diagramas-bpmn/modelo_civictrackio_filtros_map.png" alt="Filtros del mapa" loading="lazy" />
+            <div class="bpmn-card-overlay">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+          </div>
+          <div class="bpmn-card-info">
+            <div class="bpmn-card-title">Filtros del mapa</div>
+            <div class="bpmn-card-desc">Proceso de filtrado y visualización en el mapa interactivo.</div>
+          </div>
+        </div>
+
+        <div class="bpmn-card" data-img="diagramas-bpmn/modelo_civictrackio_user_estats.png" data-title="Estadísticas de usuario">
+          <div class="bpmn-card-img-wrap">
+            <img src="diagramas-bpmn/modelo_civictrackio_user_estats.png" alt="Estadísticas de usuario" loading="lazy" />
+            <div class="bpmn-card-overlay">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+          </div>
+          <div class="bpmn-card-info">
+            <div class="bpmn-card-title">Estadísticas de usuario</div>
+            <div class="bpmn-card-desc">Consulta de estadísticas y actividad personal del usuario.</div>
+          </div>
+        </div>
+
+        <div class="bpmn-card" data-img="diagramas-bpmn/modelo_civictrackio_perfil_usuario.png" data-title="Perfil de usuario">
+          <div class="bpmn-card-img-wrap">
+            <img src="diagramas-bpmn/modelo_civictrackio_perfil_usuario.png" alt="Perfil de usuario" loading="lazy" />
+            <div class="bpmn-card-overlay">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+          </div>
+          <div class="bpmn-card-info">
+            <div class="bpmn-card-title">Perfil de usuario</div>
+            <div class="bpmn-card-desc">Gestión del perfil, datos personales y configuración de cuenta.</div>
+          </div>
+        </div>
+
+        <div class="bpmn-card" data-img="diagramas-bpmn/modelo_civictrackio_user_admin.png" data-title="Interacción usuario-admin">
+          <div class="bpmn-card-img-wrap">
+            <img src="diagramas-bpmn/modelo_civictrackio_user_admin.png" alt="Interacción usuario-admin" loading="lazy" />
+            <div class="bpmn-card-overlay">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+          </div>
+          <div class="bpmn-card-info">
+            <div class="bpmn-card-title">Interacción usuario–admin</div>
+            <div class="bpmn-card-desc">Flujo de solicitudes entre usuario ciudadano y administrador.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Flujos de administrador -->
+      <div class="section-label" style="margin-top:48px;">Flujos de administrador</div>
+      <h2 class="section-title">Procesos del administrador</h2>
+      <p class="section-sub">Flujos del panel de administración web del sistema.</p>
+      <div class="bpmn-grid">
+
+        <div class="bpmn-card" data-img="diagramas-bpmn/modelo_civictrackio_admin_dash.png" data-title="Dashboard admin">
+          <div class="bpmn-card-img-wrap">
+            <img src="diagramas-bpmn/modelo_civictrackio_admin_dash.png" alt="Dashboard admin" loading="lazy" />
+            <div class="bpmn-card-overlay">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+          </div>
+          <div class="bpmn-card-info">
+            <div class="bpmn-card-title">Dashboard admin</div>
+            <div class="bpmn-card-desc">Navegación y funciones principales del panel de administración.</div>
+          </div>
+        </div>
+
+        <div class="bpmn-card" data-img="diagramas-bpmn/modelo_civictrackio_incidentes_admin.png" data-title="Gestión de incidentes">
+          <div class="bpmn-card-img-wrap">
+            <img src="diagramas-bpmn/modelo_civictrackio_incidentes_admin.png" alt="Gestión de incidentes" loading="lazy" />
+            <div class="bpmn-card-overlay">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+          </div>
+          <div class="bpmn-card-info">
+            <div class="bpmn-card-title">Gestión de incidentes</div>
+            <div class="bpmn-card-desc">Revisión, moderación y acciones sobre incidentes reportados.</div>
+          </div>
+        </div>
+
+        <div class="bpmn-card" data-img="diagramas-bpmn/modelo_civictrackio_admin_soli.png" data-title="Solicitudes de eliminación">
+          <div class="bpmn-card-img-wrap">
+            <img src="diagramas-bpmn/modelo_civictrackio_admin_soli.png" alt="Solicitudes de eliminación" loading="lazy" />
+            <div class="bpmn-card-overlay">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+          </div>
+          <div class="bpmn-card-info">
+            <div class="bpmn-card-title">Solicitudes de eliminación</div>
+            <div class="bpmn-card-desc">Proceso de revisión y resolución de solicitudes de borrado.</div>
+          </div>
+        </div>
+
+        <div class="bpmn-card" data-img="diagramas-bpmn/modelo_civictrackio_admin_estats.png" data-title="Estadísticas admin">
+          <div class="bpmn-card-img-wrap">
+            <img src="diagramas-bpmn/modelo_civictrackio_admin_estats.png" alt="Estadísticas admin" loading="lazy" />
+            <div class="bpmn-card-overlay">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+          </div>
+          <div class="bpmn-card-info">
+            <div class="bpmn-card-title">Estadísticas admin</div>
+            <div class="bpmn-card-desc">Consulta de métricas del sistema y exportación de datos.</div>
+          </div>
+        </div>
+
+        <div class="bpmn-card" data-img="diagramas-bpmn/modelo_civictrackio_perfil_admin.png" data-title="Perfil de administrador">
+          <div class="bpmn-card-img-wrap">
+            <img src="diagramas-bpmn/modelo_civictrackio_perfil_admin.png" alt="Perfil de administrador" loading="lazy" />
+            <div class="bpmn-card-overlay">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+          </div>
+          <div class="bpmn-card-info">
+            <div class="bpmn-card-title">Perfil de administrador</div>
+            <div class="bpmn-card-desc">Gestión de credenciales y configuración del perfil admin.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="bpmn-lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visor de diagrama">
+    <div class="bpmn-lightbox-backdrop" id="lb-backdrop"></div>
+    <div class="bpmn-lightbox-inner">
+      <button class="lb-close" id="lb-close" aria-label="Cerrar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="lb-title" id="lb-title"></div>
+      <div class="lb-img-wrap">
+        <img id="lb-img" src="" alt="" />
+      </div>
+      <div class="lb-controls">
+        <button class="lb-nav" id="lb-prev" aria-label="Anterior">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <span class="lb-counter" id="lb-counter"></span>
+        <button class="lb-nav" id="lb-next" aria-label="Siguiente">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="nav-logo-circle" style="width:32px;height:32px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <span class="nav-name" style="font-size:16px;">Civic<span class="nav-name-accent">Track</span><span class="nav-name-io">IO</span></span>
+      </div>
+      <p class="footer-copy">Sistema de reporte ciudadano de hurtos · Pasto, Nariño · 2026</p>
+    </div>
+  </footer>
+
+  <script src="bpmn.js"></script>
+</body>
+</html>

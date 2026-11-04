@@ -3,10 +3,22 @@ document.querySelectorAll('.uml-tab').forEach(tab => {
   tab.addEventListener('click', () => {
     const sprint = tab.dataset.sprint;
     document.querySelectorAll('.uml-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.uml-panel').forEach(p => p.classList.remove('active'));
+    // only toggle panels inside the sprint section
+    document.querySelectorAll('#diagrama .uml-panel').forEach(p => p.classList.remove('active'));
     tab.classList.add('active');
     document.getElementById(`uml-${sprint}`).classList.add('active');
     setTimeout(() => drawSprint(parseInt(sprint)), 80);
+  });
+});
+
+// ── ER Module Tabs ──
+document.querySelectorAll('.er-mod-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const mod = tab.dataset.mod;
+    document.querySelectorAll('.er-mod-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelectorAll('#diagrama-er .uml-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById(`er-mod-${mod}`).classList.add('active');
   });
 });
 
